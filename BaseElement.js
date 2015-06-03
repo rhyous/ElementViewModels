@@ -17,3 +17,12 @@ var BaseElement = function (child) {
   };
   _self.init(child);
 }
+
+var BaseTextElement = function (text, child) {
+  var _self = this;
+  _self.init = function (child) {
+      BaseElement(child);
+      child.text = ko.observable(text);
+    };
+  _self.init(child);
+}
