@@ -1,11 +1,11 @@
-var ButtonViewModel = function(text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick) {
+var ButtonViewModel = function(text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick, child) {
   // Private
   var _self = this;
   BaseElement(_self);
   var _text = text;
   var _clickMethod = clickMethod;
   var _canClickMethod = canClickMethod;
-  var _autoEnableButtonAfterOnClick = (autoEnableButtonAfterOnClick) && autoEnableButtonAfterOnClick;
+  var _autoEnableButtonAfterOnClick = (autoEnableButtonAfterOnClick !== null &&autoEnableButtonAfterOnClick !== undefined ) ? autoEnableButtonAfterOnClick : true;
   
   _self.init = function(obj) {
 
@@ -31,4 +31,6 @@ var ButtonViewModel = function(text, clickMethod, canClickMethod, autoEnableButt
     });
     obj.class = ko.observable();
   }
+  _self.init(_self);
+  if (child) { _self.init(child); }
 };
