@@ -1,0 +1,19 @@
+// The template for any inheritable class.
+// Any class that allows children should support this template.
+
+var <baseclassname> = function(child) {
+  var _self = this;
+  _self.init = function(obj) {
+  
+    // ... define all members here using obj.member syntax.
+  
+  };
+  // Instantiates fields and method to itself. Exclude this to make
+  // base class abstract.
+  _self.init(_self); 
+  // Instantiates fields and method to child.
+  if (child) { _self.init(child); } 
+};
+
+// Note: If the class supports parameters in the constructor, then always make the child last.
+//       var BaseClassTemplate = function(param1, param2, param3, child) {
