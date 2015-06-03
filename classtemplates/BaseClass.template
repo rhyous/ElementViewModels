@@ -1,0 +1,14 @@
+var <baseclassname> = function(child) {
+  var _self = this;
+  var _child = child;
+  
+  _self.init = function(obj) {
+  
+    // ... define all members here using obj.member syntax.
+    obj.field1 = _self.field1 || ko.observable();
+    
+  };
+  
+  _self.init(_self);
+  if (_child) { _self.init(_child); } 
+};

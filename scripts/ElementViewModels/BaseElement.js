@@ -1,5 +1,6 @@
 var BaseElement = function (child) {
   var _self = this;
+  var _child = child;
   _self.init = function (child) {
     child.accesskey = ko.observable();
     child.class = ko.observable();
@@ -15,14 +16,16 @@ var BaseElement = function (child) {
     child.title = ko.observable();
     child.translate = ko.observable();
   };
-  _self.init(child);
+  _self.init(_child);
 }
 
 var BaseTextElement = function (text, child) {
   var _self = this;
+  var _text = text;
+  var _child = child;
   _self.init = function (child) {
       BaseElement(child);
-      child.text = ko.observable(text);
+      child.text = ko.observable(_text);
     };
   _self.init(child);
 }

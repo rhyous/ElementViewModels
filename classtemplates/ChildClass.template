@@ -1,0 +1,13 @@
+var <childclassname> = function(param1, child) {
+  var _self = this;
+  var _param1 = param1;
+  var _child = child;
+  
+  _self.init = function(obj) {
+    BaseClass(obj); // You dont' have to store BaseClass
+    var param1 = self.param1 || ko.observable(_param1)  
+  };
+  
+  _self.init(_self); 
+  if (_child) { _self.init(_child); } 
+};
