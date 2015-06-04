@@ -1,21 +1,17 @@
-var ButtonViewModel = function(text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick, child) {
+var ButtonViewModel = function(buttonModel, child) {
   // Private
   var _self = this;
-  var _text = text;
-  var _clickMethod = clickMethod;
-  var _canClickMethod = canClickMethod;
-  var _autoEnableButtonAfterOnClick = (autoEnableButtonAfterOnClick !== null && autoEnableButtonAfterOnClick !== undefined) ? autoEnableButtonAfterOnClick : true;
+  var _buttonModel = buttonModel || new ButtonModel();  
 
   _self.init = function(obj) {
-    BaseTextElement(_text, obj);
-    
+    BaseTextElement(_buttonModel.text.get(), obj);
     // Public
-    obj.autoEnableButtonAfterOnClick = ko.observable(_autoEnableButtonAfterOnClick);
-    obj.onClick = (_clickMethod) ? function() {
+    obj.autoEnableButtonAfterOnClick = ko.observable(_buttonModel.autoEnableButtonAfterOnClick.get());
+    obj.onClick = (_buttonModel.clickMethod) ? function() {
       if (!obj.canClick())
         return;
       obj.isRunning(true);
-      _clickMethod();
+      _buttonModel.clickMethod();
       if (obj.autoEnableButtonAfterOnClick())
         obj.isRunning(false);
     } : function() {
@@ -24,9 +20,8 @@ var ButtonViewModel = function(text, clickMethod, canClickMethod, autoEnableButt
 
     obj.isRunning = ko.observable(false);
 
-
     obj.canClick = ko.computed(function() {
-      return !obj.isRunning() && (!(_canClickMethod) || _canClickMethod());
+      return !obj.isRunning() && (!(_buttonModel.canClickMethod) || _buttonModel.canClickMethod());
     });
     obj.class = ko.observable();
   }

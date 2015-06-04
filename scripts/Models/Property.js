@@ -13,21 +13,47 @@ var Property = function(value, child) {
       _value = value;
     };
     
-    if (value) { obj.set(value); }
+    if (value !== undefined && value !== null) { obj.set(value); }
     
-    obj.hasValue = function() {
-      return _backingField !== undefined && _backingField !== null;
+    obj.hasValue = _self.hasValue || function() {
+      return _value !== undefined && _value !== null;
     };
   };
   
   _self.init(_self, value);
   if (_child) { _self.init(_child, value); }
-}
+};
 
 var StringProperty = function(value) {
   var _self = this;
   _self.base = new Property(value, _self);
+  _self.set =  function(value) {
+	if (typeof(value) !== "string" && !(value instanceof String))
+		throw "value must be a string."
+    _self.base.set(value);
+  };
   _self.isNullOrWhitespace = function ( str ) {
     return !str || str.replace(/\s/g, '').length < 1;
   };
-}
+};
+
+var TrueFalseProperty = function(value) {
+  var _self = this;
+  _self.base = new Property(value, _self);
+  _self.set =  function(value) {
+	if (typeof(value) !== 'boolean' && !(value instanceof Boolean))
+		throw "value must be a boolean."
+    _self.base.set(value);
+  };
+};
+
+var TypedProperty = function(value, type) {
+  var _self = this;
+  var _type = type;
+  _self.base = new Property(value, _self);
+  _self.set =  function(value) {
+    if (typeof(value) !== typeof(type) && !(value instanceof type))
+		throw "value must be a " + typeof(type) + ".";
+    _self.base.set(value);
+  };
+};

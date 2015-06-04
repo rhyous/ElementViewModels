@@ -17,7 +17,7 @@ var BaseElement = function (child) {
     child.translate = ko.observable();
   };
   _self.init(_child);
-}
+};
 
 var BaseTextElement = function (text, child) {
   var _self = this;
@@ -27,8 +27,8 @@ var BaseTextElement = function (text, child) {
       BaseElement(child);
       child.text = ko.observable(_text);
       child.isEmpty = _self.isEmpty || ko.computed(function() {
-        return !child.text() || child.text().replace(/\s/g, "").length < 1;
+        return !child.text() || ( child.text() && child.text().replace(/\s/g, "").length < 1);
       });
     };
   _self.init(child);
-}
+};

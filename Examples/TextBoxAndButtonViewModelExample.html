@@ -8,10 +8,12 @@
     
     <!-- Step 3 - Include Model, ViewModels, etc. -->
     <script src="../scripts/BindingHandlers/knockout.enterkey.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.placeholder.js"></script>
     <script src="../scripts/ElementViewModels/BaseElement.js"></script>
     <script src="../scripts/Models/Property.js"></script>
     <script src="../scripts/Models/TextBoxModel.js"></script>
     <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
+    <script src="../scripts/Models/ButtonModel.js"></script>
     <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
     <script src="../scripts/CompoundViewModels/TextBoxAndButtonViewModel.js"></script>
      
@@ -19,14 +21,17 @@
     <script type="text/javascript" >
         $(document).ready(function(){
             var Business = function () {
-				_self = this;
+				var _self = this;
 				_self.onClick = function () {
                     alert("You entered: " + _self.cvm.textBoxViewModel.text());
-				}
-                _self.textBoxModel  = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
-
-                // function(text, buttonText, clickMethod, placeholder, autoEnableAfterOnClick)
-                _self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttontext, _self.onClick, _self.placeholder);
+				};
+				
+				<!-- Step 4 - Build a TextBoxModel -->
+                _self.textBoxModel = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
+				<!-- Step 5 - Build a ButtonModel -->
+				_self.buttonModel = new ButtonModel("Submit", _self.onClick);
+				<!-- Step 5 - Build the compoundViewModel -->
+                _self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttonModel);
             }
            
             <!-- Step 7 -  Activates knockout.js bindings -->
@@ -37,7 +42,7 @@
 <body>
  
     <!-- Step 8 - Create a HTML Elements with bindings -->
-    <input data-bind="value: text, valueUpdate:'afterkeydown'" />
-    <button type="button" id="btnEnter" data-bind="enable: canClick, click: onClick">Enter</button>
+    <input data-bind="value: textBoxViewModel.text, valueUpdate:'afterkeydown', placeholder: textBoxViewModel.placeholder" />
+    <button type="button" id="btnEnter" data-bind="enable: buttonViewModel.canClick, click: buttonViewModel.onClick">Enter</button>
 </body>
 </html>

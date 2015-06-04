@@ -62,21 +62,22 @@ QUnit.module("TextBoxViewModel constructor tests", {
     onEnterKeyPressed = function(){
       onEnterKeyPressedWasCalled = true;
     }
-    text = "Hello, world!";
-    placeholder = "Type here";
-    vm = new TextBoxViewModel(text, placeholder, onEnterKeyPressed);
+	text = "Hello, world!";
+	placeholder = "Type here";
+	var model = new TextBoxModel(text, placeholder, onEnterKeyPressed)
+    vm = new TextBoxViewModel(model);
   }
 });
 
-QUnit.test("Constructor first parameter is text.", function(assert) {
+QUnit.test("Constructor textViewModel.text()", function(assert) {
   assert.equal(text, vm.text());
 });
 
-QUnit.test("Constructor 2nd parameter is placeholder.", function(assert) {
+QUnit.test("Constructor textViewModel.placeholder().", function(assert) {
   assert.equal(placeholder, vm.placeholder());
 });
 
-QUnit.test("Constructor 3rd parameter is onEnterKeyPressed method.", function(assert) {
+QUnit.test("Constructor textViewModel.onEnterKeyPressed method.", function(assert) {
   vm.onEnterKeyPressed();
   assert.ok(onEnterKeyPressedWasCalled);
 });

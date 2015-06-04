@@ -59,35 +59,31 @@ QUnit.test("Element inherited 'translate' field", function(assert) {
 QUnit.module("ButtonViewModel Constructor tests", {
   beforeEach: function() {
     clickMethodWasCalled = false;
-    clickMethod = function() {
-      clickMethodWasCalled = true;
-    };
     canClickMethodWasCalled = false;
-    canClickMethod = function() {
-      canClickMethodWasCalled = true;
-      return true;
-    };
-    autoEnableButtonAfterOnClick = false;
-    vm = new ButtonViewModel("Submit", clickMethod, canClickMethod, autoEnableButtonAfterOnClick);
+	var buttonModel = new ButtonModel("Submit",	
+	  function() { clickMethodWasCalled = true; },
+	  function() { return canClickMethodWasCalled = true; },
+	  false);
+    vm = new ButtonViewModel(buttonModel);
   }
 });
 
-QUnit.test("Constructor first parameter is button text.", function(assert) {
-  assert.equal("Submit", vm.text());
+QUnit.test("Constructor text().", function(assert) {
+  assert.equal(vm.text(), "Submit");
 });
 
-QUnit.test("Constructor 2nd parameter is clickMethod.", function(assert) {
+QUnit.test("Constructor clickMethod().", function(assert) {
   vm.onClick();
   assert.ok(clickMethodWasCalled);
 });
 
-QUnit.test("Constructor 3rd parameter is canClickMethod.", function(assert) {
+QUnit.test("Constructor canClickMethod().", function(assert) {
   vm.canClick();
   assert.ok(canClickMethodWasCalled);
 });
 
-QUnit.test("Constructor 4th parameter is autoEnableButtonAfterOnClick.", function(assert) {
-  assert.strictEqual(autoEnableButtonAfterOnClick, vm.autoEnableButtonAfterOnClick());
+QUnit.test("Constructor autoEnableButtonAfterOnClick.", function(assert) {
+  assert.strictEqual(vm.autoEnableButtonAfterOnClick(), false);
 });
 
 
@@ -95,12 +91,12 @@ QUnit.module("ButtonViewModel onClick tests");
 
 QUnit.test("onClick disables then enables button.", function(assert) {
   clickMethodWasCalled = false;
-  clickMethod = function() {
+  var buttonModel = new ButtonModel("Submit", function() {
     assert.ok(vm.isRunning());
     assert.ok(!vm.canClick());
     clickMethodWasCalled = true;
-  };
-  vm = new ButtonViewModel("Submit", clickMethod);
+  });
+  vm = new ButtonViewModel(buttonModel);
   vm.onClick();
   assert.ok(!vm.isRunning());
   assert.ok(vm.canClick());

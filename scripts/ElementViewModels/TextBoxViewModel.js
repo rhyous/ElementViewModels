@@ -6,7 +6,7 @@ var TextBoxViewModel = function(textBoxModel, child) {
   var _onEnterKeyPressed = (_textBoxModel.onEnterKeyPressed) ? _textBoxModel.onEnterKeyPressed : function() {
     return true;
   };  
-  _self.base = new BaseTextElement(_textBoxModel.text.get());
+  _self.base = new BaseTextElement(_textBoxModel.text.get(), _self);
   
   _self.init = function(obj, isChild) {
     if (isChild) { _self.base.init(obj); }
