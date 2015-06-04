@@ -1,23 +1,20 @@
-var TextBoxViewModel = function(text, placeholder, onEnterKeyPressed, child) {
+var TextBoxViewModel = function(textBoxModel, child) {
   // Private
   var _self = this;
-  var _text = text;
+  var _textBoxModel = (textBoxModel) ? textBoxModel : new TextBoxModel();
   var _child = child;
-  var _onEnterKeyPressed = (onEnterKeyPressed) ? onEnterKeyPressed : function() {
+  var _onEnterKeyPressed = (_textBoxModel.onEnterKeyPressed) ? _textBoxModel.onEnterKeyPressed : function() {
     return true;
   };  
-  _self.base = new BaseTextElement(_text, _self);
+  _self.base = new BaseTextElement(_textBoxModel.text.get());
   
   _self.init = function(obj, isChild) {
     if (isChild) { _self.base.init(obj); }
     
     // Public
-    obj.placeholder = _self.placeholder || ko.observable(placeholder);
+    obj.placeholder = _self.placeholder || ko.observable(_textBoxModel.placeholder.get());
     obj.onEnterKeyPressed = _onEnterKeyPressed;
     obj.hasFocus = _self.hasFocus || ko.observable(false);
-    obj.isEmpty = _self.isEmpty || ko.computed(function() {
-      return !obj.text() || obj.text().replace(/\s/g, "").length < 1;
-    });
   };
 
   _self.init(_self);

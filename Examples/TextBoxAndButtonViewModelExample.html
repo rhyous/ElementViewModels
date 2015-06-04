@@ -1,0 +1,43 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/BindingHandlers/knockout.enterkey.js"></script>
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/Models/Property.js"></script>
+    <script src="../scripts/Models/TextBoxModel.js"></script>
+    <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/TextBoxAndButtonViewModel.js"></script>
+     
+    <!-- Step 4 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            var Business = function () {
+				_self = this;
+				_self.onClick = function () {
+                    alert("You entered: " + _self.cvm.textBoxViewModel.text());
+				}
+                _self.textBoxModel  = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
+
+                // function(text, buttonText, clickMethod, placeholder, autoEnableAfterOnClick)
+                _self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttontext, _self.onClick, _self.placeholder);
+            }
+           
+            <!-- Step 7 -  Activates knockout.js bindings -->
+            ko.applyBindings(new Business().cvm);
+        });
+    </script>
+</head>
+<body>
+ 
+    <!-- Step 8 - Create a HTML Elements with bindings -->
+    <input data-bind="value: text, valueUpdate:'afterkeydown'" />
+    <button type="button" id="btnEnter" data-bind="enable: canClick, click: onClick">Enter</button>
+</body>
+</html>

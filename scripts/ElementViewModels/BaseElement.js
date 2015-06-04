@@ -26,6 +26,9 @@ var BaseTextElement = function (text, child) {
   _self.init = function (child) {
       BaseElement(child);
       child.text = ko.observable(_text);
+      child.isEmpty = _self.isEmpty || ko.computed(function() {
+        return !child.text() || child.text().replace(/\s/g, "").length < 1;
+      });
     };
   _self.init(child);
 }

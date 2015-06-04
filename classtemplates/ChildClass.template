@@ -4,7 +4,7 @@ var <childclassname> = function(param1, child) {
   var _child = child;
   
   _self.init = function(obj) {
-    BaseClass(obj); // You dont' have to store BaseClass
+    BaseClass(obj); // You don't have to store BaseClass
     var param1 = self.param1 || ko.observable(_param1)  
   };
   
