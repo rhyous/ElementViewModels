@@ -1,4 +1,4 @@
-var TextBoxViewModel = function(textBoxModel, child) {
+var TextBoxViewModel = TextBoxViewModel || function(textBoxModel, child) {
   // Private
   var _self = this;
   var _textBoxModel = (textBoxModel) ? textBoxModel : new TextBoxModel();

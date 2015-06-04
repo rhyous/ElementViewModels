@@ -1,6 +1,7 @@
 <!-- Step 1a - Create the HTML File or the View -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Step 2 - Include jquery and knockout -->
     <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
@@ -9,13 +10,16 @@
     <!-- Step 3 - Include Model, ViewModels, etc. -->
     <script src="../scripts/BindingHandlers/knockout.enterkey.js"></script>
     <script src="../scripts/BindingHandlers/knockout.placeholder.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.areaRowsColumns.js"></script>
     <script src="../scripts/ElementViewModels/BaseElement.js"></script>
     <script src="../scripts/Models/Property.js"></script>
     <script src="../scripts/Models/TextBoxModel.js"></script>
+    <script src="../scripts/Models/TextAreaModel.js"></script>
     <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/TextAreaViewModel.js"></script>
     <script src="../scripts/Models/ButtonModel.js"></script>
     <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
-    <script src="../scripts/CompoundViewModels/TextBoxAndButtonViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/TextAreaAndButtonViewModel.js"></script>
      
     <!-- Step 4 - Include the business -->
     <script type="text/javascript" >
@@ -23,15 +27,15 @@
             var Business = function () {
 				var _self = this;
 				_self.onClick = function () {
-                    alert("You entered: " + _self.cvm.textBox.text());
+                    alert("You entered: " + _self.cvm.area.text());
 				};
 				
 				<!-- Step 4 - Build a TextBoxModel -->
-                _self.textBoxModel = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
+                _self.textAreaModel = new TextAreaModel("", "Enter something here . . . ", _self.onClick, 25, 80);
 				<!-- Step 5 - Build a ButtonModel -->
 				_self.buttonModel = new ButtonModel("Submit", _self.onClick);
 				<!-- Step 5 - Build the compoundViewModel -->
-                _self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttonModel);
+                _self.cvm = new TextAreaAndButtonViewModel(_self.textAreaModel, _self.buttonModel);
             }
            
             <!-- Step 7 -  Activates knockout.js bindings -->
@@ -40,9 +44,12 @@
     </script>
 </head>
 <body>
- 
+
     <!-- Step 8 - Create a HTML Elements with bindings -->
-    <input data-bind="value: textBox.text, valueUpdate:'afterkeydown', placeholder: textBox.placeholder" />
-    <button type="button" id="btnEnter" data-bind="text: button.text, enable: button.canClick, click: button.onClick"></button>
+    <div>
+        <textarea data-bind="value: area.text, valueUpdate:'afterkeydown', placeholder: area.placeholder, rows: area.rows, columns: area.columns"></textarea>
+    </div>
+    <button class="commonBtn" id="myButton" data-bind="text: button.text, enable: button.canClick, click: button.onClick"></button>
+    
 </body>
 </html>

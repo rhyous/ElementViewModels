@@ -1,4 +1,4 @@
-var ButtonModel = function(text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick) {
+var ButtonModel = ButtonModel || function(text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick) {
     var _self = this;
     _self.text = new StringProperty(text);
 	_self.clickMethod = clickMethod || null;

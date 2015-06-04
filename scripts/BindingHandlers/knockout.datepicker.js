@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.datepicker = {
+﻿ko.bindingHandlers.datepicker = ko.bindingHandlers.datepicker || {
     init: function (element, valueAccessor, allBindingsAccessor) {
         var options = allBindingsAccessor().datepickerOptions || {},
             $el = $(element);
