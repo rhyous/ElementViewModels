@@ -43,6 +43,6 @@
  
     <!-- Step 8 - Create a HTML Elements with bindings -->
     <input data-bind="value: textBoxViewModel.text, valueUpdate:'afterkeydown', placeholder: textBoxViewModel.placeholder" />
-    <button type="button" id="btnEnter" data-bind="enable: buttonViewModel.canClick, click: buttonViewModel.onClick">Enter</button>
+    <button type="button" id="btnEnter" data-bind="text: buttonViewModel.text, enable: buttonViewModel.canClick, click: buttonViewModel.onClick"></button>
 </body>
 </html>
