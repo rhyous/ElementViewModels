@@ -1,4 +1,4 @@
-var ButtonViewModel = function(buttonModel, child) {
+var ButtonViewModel = ButtonViewModel || function(buttonModel, child) {
   // Private
   var _self = this;
   var _buttonModel = buttonModel || new ButtonModel();  

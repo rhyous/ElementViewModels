@@ -1,4 +1,4 @@
-var BaseElement = function (child) {
+var BaseElement = BaseElement|| function (child) {
   var _self = this;
   var _child = child;
   _self.init = function (child) {

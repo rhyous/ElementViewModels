@@ -1,4 +1,4 @@
-var AuthenticationViewModel = function (loginMethod, beforeLogin, onSuccess, onFailure, onError) {
+var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, beforeLogin, onSuccess, onFailure, onError) {
 	var _self = this;
 	var isNullOrWhitespace = function( str ) {
 	  return !str || str.replace(/\s/g, '').length < 1;

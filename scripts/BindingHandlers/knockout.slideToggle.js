@@ -1,4 +1,4 @@
-﻿ko.bindingHandlers.slideToggle = {
+﻿ko.bindingHandlers.slideToggle = ko.bindingHandlers.slideToggle || {
     init: function (element, valueAccessor) {
         var value = valueAccessor();
         $(element).toggle(ko.utils.unwrapObservable(value));

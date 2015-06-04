@@ -19,30 +19,30 @@
      
     <!-- Step 4 - Include the business -->
     <script type="text/javascript" >
-        $(document).ready(function(){
-            var Business = function () {
-				var _self = this;
-				_self.onClick = function () {
-                    alert("You entered: " + _self.cvm.textBoxViewModel.text());
-				};
-				
-				<!-- Step 4 - Build a TextBoxModel -->
-                _self.textBoxModel = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
-				<!-- Step 5 - Build a ButtonModel -->
-				_self.buttonModel = new ButtonModel("Submit", _self.onClick);
-				<!-- Step 5 - Build the compoundViewModel -->
-                _self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttonModel);
-            }
-           
-            <!-- Step 7 -  Activates knockout.js bindings -->
-            ko.applyBindings(new Business().cvm);
+        $(document).ready(function () {
+        	var Business = function () {
+        		var _self = this;
+        		_self.onClick = function () {
+        			alert("You entered: " + _self.cvm.textBox.text());
+        		};
+
+        		 < !--Step 4 - Build a TextBoxModel-- >
+        		_self.textBoxModel = new TextBoxModel("", "Enter something here . . . ", _self.onClick);
+        		 < !--Step 5 - Build a ButtonModel-- >
+        		_self.buttonModel = new ButtonModel("Submit", _self.onClick);
+        		 < !--Step 5 - Build the compoundViewModel-- >
+        		_self.cvm = new TextBoxAndButtonViewModel(_self.textBoxModel, _self.buttonModel);
+        	}
+
+        	 < !--Step 7 - Activates knockout.js bindings-- >
+        	ko.applyBindings(new Business().cvm);
         });
     </script>
 </head>
 <body>
  
     <!-- Step 8 - Create a HTML Elements with bindings -->
-    <input data-bind="value: textBoxViewModel.text, valueUpdate:'afterkeydown', placeholder: textBoxViewModel.placeholder" />
-    <button type="button" id="btnEnter" data-bind="text: buttonViewModel.text, enable: buttonViewModel.canClick, click: buttonViewModel.onClick"></button>
+    <input data-bind="value: textBox.text, valueUpdate:'afterkeydown', placeholder: textBox.placeholder" />
+    <button type="button" id="btnEnter" data-bind="text: button.text, enable: button.canClick, click: button.onClick"></button>
 </body>
 </html>

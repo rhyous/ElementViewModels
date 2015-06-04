@@ -64,7 +64,10 @@ QUnit.module("TextAreaViewModel inherits TextBoxViewModel", {
     }
     text = "Hello, world!";
     placeholder = "Type here";
-    vm = new TextAreaViewModel(text, placeholder, null, null, onEnterKeyPressed);
+    rows = 10;
+    columns = 100;
+	var model = new TextAreaModel(text, placeholder, onEnterKeyPressed, rows, columns)
+    vm = new TextAreaViewModel(model);
   }
 });
 
@@ -99,30 +102,29 @@ QUnit.module("TextAreaViewModel constructor", {
     placeholder = "Type here";
     rows = 10;
     columns = 100;
-    vm = new TextAreaViewModel(text, placeholder, rows, columns, onEnterKeyPressed);
+	var model = new TextAreaModel(text, placeholder, onEnterKeyPressed, rows, columns)
+    vm = new TextAreaViewModel(model);
   }
 });
 
-QUnit.test("Constructor first parameter is text.", function(assert) {
+QUnit.test("Constructor textAreaViewModel.text()", function(assert) {
   assert.equal(text, vm.text());
 });
 
-QUnit.test("Constructor 2nd parameter is placeholder.", function(assert) {
+QUnit.test("Constructor textAreaViewModel.placeholder().", function(assert) {
   assert.equal(placeholder, vm.placeholder());
 });
 
-QUnit.test("Constructor 3nd parameter is rows.", function(assert) {
-  assert.equal(rows, vm.rows());
-});
-
-QUnit.test("Constructor 4th parameter is columns.", function(assert) {
-  assert.equal(columns, vm.columns());
-});
-
-QUnit.test("Constructor 5rd parameter is onEnterKeyPressed method.", function(assert) {
+QUnit.test("Constructor textAreaViewModel.onEnterKeyPressed method.", function(assert) {
   vm.onEnterKeyPressed();
   assert.ok(onEnterKeyPressedWasCalled);
 });
 
+QUnit.test("Constructor textAreaViewModel.rows()", function(assert) {
+  assert.equal(rows, vm.rows());
+});
 
+QUnit.test("Constructor textAreaViewModel.columns()", function(assert) {
+  assert.equal(columns, vm.columns());
+});
 
