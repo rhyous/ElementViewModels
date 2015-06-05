@@ -1,0 +1,51 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/BindingHandlers/knockout.enterkey.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.placeholder.js"></script>
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/Models/Property.js"></script>
+    <script src="../scripts/Models/TextBoxModel.js"></script>
+    <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
+    <script src="../scripts/Models/ButtonModel.js"></script>
+    <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/AuthenticationViewModel.js"></script>     
+    <!-- Step 5 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            <!-- Step 9 -  Activates knockout.js bindings -->
+            var beforeLogin = function() { alert("_beforeLogin"); }
+            var loginSuccess = function() { alert("_loginSuccess"); }
+            var loginFailure = function() { alert("_loginFailure"); }
+            var loginError = function() { alert("_loginError"); }
+            
+            var loginMethod = function (data, onSuccess, onFailure, onError) {                    
+                alert("Login was clicked.");
+                if (data.User === "user1" && data.Password === "pw")
+                    onSuccess();
+                else if (data.User === "failure")
+                    onFailure();
+                else if (data.User === "error")
+                    onError();
+            };
+            var auth = new AuthenticationViewModel(loginMethod, beforeLogin, loginSuccess, loginFailure, loginError);
+            auth.user.placeholder("username");
+            auth.password.placeholder("username");
+            ko.applyBindings(auth);
+        });
+    </script>
+</head>
+<body>
+    <!-- Step 10 - Create a HTML Elements with bindings -->
+    <input id="inputName" type="text" data-bind="value: user.text, valueUpdate: 'afterkeydown', enterKey: user.onEnterKeyPressed, placeholder: user.placeholder" class="userpassword" />
+    <input id="inputPsd" type="password" data-bind="value: password.text, valueUpdate: 'afterkeydown', enterKey: password.onEnterKeyPressed, placeholder: password.placeholder" class="userpassword" />
+    <button id="login" data-bind="text: submitButton.text, enable: submitButton.canClick, click: submitButton.onClick"></button>
+<body>
+</html>
