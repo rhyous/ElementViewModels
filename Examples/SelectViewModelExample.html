@@ -1,0 +1,67 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/ElementViewModels/OptionViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/SelectViewModel.js"></script>
+    <!-- Step 4 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){            
+ 
+            <!-- Step 5 - Create ViewModel for whatever you need -->
+            var SurveyAnswerViewModel = function () {
+                var self = this;
+                 
+                <!-- Step 6 - Create an observable list instance -->
+                self.list = [];
+                self.list.push(new OptionViewModel("Good", 10));
+                self.list.push(new OptionViewModel("Average", 5));
+                self.list.push(new OptionViewModel("Poor", 1));
+                self.defaultValue = 10;
+                <!-- Step 7 - Create a SelectViewModel instance -->
+                self.selectGroup1 = new SelectViewModel(self.list, self.defaultValue);                       
+                 
+                <!-- Step 8 - Create a computed value to require a selection before submitting -->
+                self.canClick = ko.computed( function() {
+                    return self.selectGroup1.selectedValue() != "";
+                }, self);
+                
+                <!-- Step 9 - Make some button methods for this example -->
+                self.submitClick = function(){
+                    alert("You selected: " + self.selectGroup1.selectedText());
+                    // Do something here
+                }
+                
+                self.resetClick = function(){
+                    self.selectGroup1.clear();
+                }
+            }
+            
+            <!-- Step 10 - Create a computed value to require a selection before submitting -->   
+            ko.applyBindings(new SurveyAnswerViewModel());
+        });
+    </script>
+</head>
+<body>
+    <!-- Step 13 - Create a drop down select item -->
+    <select data-bind="options: selectGroup1.list, optionsText: 'text', optionsValue: 'value', value: selectGroup1.selectedValue"></select>
+    <br />
+    
+    <!-- Step 14 - Add html elements to see other properties -->
+    <p data-bind="text: 'Index: ' +  selectGroup1.selectedIndex()"></p>
+    <p data-bind="text: 'Value: ' +  selectGroup1.selectedValue()"></p>
+    <p data-bind="text: 'Text: ' +  selectGroup1.selectedText()"></p>
+     
+    <!-- Step 15 - Add a button and bind its to methods -->
+    <button type="submit" id="btnSubmit" data-bind="enable: canClick, click: submitClick">Submit</button>
+    <button type="reset" id="btnReset" data-bind="enable: canClick, click: resetClick">Reset</button>
+ 
+</body>
+</html>
