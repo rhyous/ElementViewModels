@@ -20,15 +20,18 @@ var BaseElement = BaseElement|| function (child) {
 };
 
 var BaseTextElement = function (text, child) {
-  var _self = this;
-  var _text = text;
-  var _child = child;
-  _self.init = function (child) {
-      BaseElement(child);
-      child.text = ko.observable(_text);
-      child.isEmpty = _self.isEmpty || ko.computed(function() {
-        return !child.text() || ( child.text() && child.text().replace(/\s/g, "").length < 1);
-      });
+    var _self = this;
+    var _text = text;
+    var _child = child;
+    _self.init = function (child) {
+        child.isNullOrWhitespace = function ( str ) {
+            return !str || String(str).replace(/\s/g, '').length < 1;
+        };
+        new BaseElement(child);
+        child.text = ko.observable(_text);
+        child.isEmpty = _self.isEmpty || ko.computed(function() {
+            return !child.text() || child.isNullOrWhitespace(child.text());
+        });
     };
   _self.init(child);
 };

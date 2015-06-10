@@ -1,0 +1,70 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/BindingHandlers/knockout.enterkey.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.placeholder.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.areaRowsColumns.js"></script>
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/Models/Property.js"></script>
+    <script src="../scripts/Models/TextBoxModel.js"></script>
+    <script src="../scripts/Models/TextAreaModel.js"></script>
+    <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/TextAreaViewModel.js"></script>
+    <script src="../scripts/Models/ButtonModel.js"></script>
+    <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/TextAreaAndButtonViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/OptionViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/SelectViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/TextAreaSelectAndButtonViewModel.js"></script>
+     
+    <!-- Step 4 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            var Business = function () {
+				var _self = this;
+				_self.onClick = function () {
+                    alert(
+                        "You entered: " + _self.cvm.area.text() + "\n" + 
+                        "You selected: " + _self.cvm.select.selectedValue() + "\n" + 
+                        "With a value of: " + _self.cvm.select.selectedValue()
+                    );
+				};
+				
+				<!-- Step 4 - Build a TextBoxModel -->
+                _self.textAreaModel = new TextAreaModel("", "Enter something here . . . ", _self.onClick, 25, 80);
+				<!-- Step 5 - Build a ButtonModel -->
+				_self.buttonModel = new ButtonModel("Submit", _self.onClick);
+				<!-- Step 5 - Build the compoundViewModel -->
+                _self.options = [];
+                for (var i = 10; i > 0; --i) {
+                    _self.options.push(new OptionViewModel(i));
+                }
+                _self.cvm = new TextAreaSelectAndButtonViewModel(_self.textAreaModel, _self.buttonModel, _self.options);
+            }
+           
+            <!-- Step 7 -  Activates knockout.js bindings -->
+            ko.applyBindings(new Business().cvm);
+        });
+    </script>
+</head>
+<body>
+
+    <!-- Step 8 - Create a HTML Elements with bindings -->
+    <div>
+        <textarea data-bind="value: area.text, valueUpdate:'afterkeydown', placeholder: area.placeholder, rows: area.rows, columns: area.columns"></textarea>
+    </div>
+    <div>
+        <select data-bind="options: select.list, optionsText: 'text', optionsValue: 'value', value: select.selectedValue"></select>
+    </div>
+    
+    <button class="commonBtn" id="myButton" data-bind="text: button.text, enable: button.canClick, click: button.onClick"></button>
+    
+</body>
+</html>
