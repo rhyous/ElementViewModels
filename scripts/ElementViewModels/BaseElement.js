@@ -15,6 +15,9 @@ var BaseElement = BaseElement|| function (child) {
     child.tabindex = ko.observable();
     child.title = ko.observable();
     child.translate = ko.observable();
+	child.isNullOrWhitespace = function ( str ) {
+		return !str || String(str).replace(/\s/g, '').length < 1;
+	};
   };
   _self.init(_child);
 };
@@ -24,9 +27,6 @@ var BaseTextElement = function (text, child) {
     var _text = text;
     var _child = child;
     _self.init = function (child) {
-        child.isNullOrWhitespace = function ( str ) {
-            return !str || String(str).replace(/\s/g, '').length < 1;
-        };
         new BaseElement(child);
         child.text = ko.observable(_text);
         child.isEmpty = _self.isEmpty || ko.computed(function() {

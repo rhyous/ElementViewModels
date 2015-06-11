@@ -1,4 +1,4 @@
-var <childofchildclassname> = function(param1, param2, child) {
+var <childofchildclassname> = <childofchildclassname> || function(param1, param2, child) {
   var _self = this;
   var _param1 = param1;
   var _param2 = param2;

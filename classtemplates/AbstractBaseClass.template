@@ -1,6 +1,6 @@
 // The template for any inheritable abstract class.
 // Any class that allows children should support this template.
-var <baseclassname> = function(child) {
+var <baseclassname> = <baseclassname> || function(child) {
   if !(child) { throw "Abstract class cannot be instantiated." }
   var _self = this;
   var _child = child;
