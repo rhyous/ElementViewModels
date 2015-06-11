@@ -1,4 +1,4 @@
-var <baseclassname> = function(child) {
+var <baseclassname> = <baseclassname> || function(child) {
   var _self = this;
   var _child = child;
   
