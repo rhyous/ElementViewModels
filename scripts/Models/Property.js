@@ -32,12 +32,12 @@ var StringProperty = StringProperty || function (value) {
 	var _self = this;
 	_self.base = new Property(value, _self);
 	_self.set = function (value) {
-		if (typeof(value) !== "string" && !(value instanceof String))
-			throw "value must be a string."
+	    if (typeof(value) !== "string" && !(value instanceof String))
+	        throw "value must be a string.";
 			_self.base.set(value);
 	};
 	_self.isNullOrWhitespace = function (str) {
-		return !str || str.replace(/\s/g, '').length < 1;
+		return !str || str.replace(/\s/g, "").length < 1;
 	};
 };
 
@@ -45,8 +45,8 @@ var TrueFalseProperty = TrueFalseProperty || function (value) {
 	var _self = this;
 	_self.base = new Property(value, _self);
 	_self.set = function (value) {
-		if (typeof(value) !== 'boolean' && !(value instanceof Boolean))
-			throw "value must be a boolean."
+	    if (typeof(value) !== 'boolean' && !(value instanceof Boolean))
+	        throw "value must be a boolean.";
 			_self.base.set(value);
 	};
 };
