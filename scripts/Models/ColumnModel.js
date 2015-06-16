@@ -56,7 +56,7 @@ var DateColumn = DateColumn || function(index, text, child) {
     var _child = child;
 
     _self.init = function (obj) {
-        obj.base = _self.base || new ColumnModel(_index, text, "string", _sortMethod, null, _self);
+        obj.base = _self.base || new ColumnModel(_index, text, "Date", _sortMethod, null, _self);
     }
     _self.init(_self);
     if (_child) {
