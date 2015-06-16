@@ -29,8 +29,14 @@ var TableViewModel = TableViewModel || function (columns, rows, caption, child) 
             if (column.sortReverse()) { obj.rows.reverse(); }
             column.sortReverse(!column.sortReverse());
         };
+        var filterOnAll = function(data) {            
+            for (var i = 0; i < obj.columns().length; ++i) {
+                if (!obj.columns()[i].filterMethod(data)) { return false; }                
+            }
+            return true;
+        }
         obj.onHeaderFilter = function (column) {
-            var filteredArray = ko.utils.arrayFilter(obj.fixedRows(), column.filterMethod);
+            var filteredArray = ko.utils.arrayFilter(obj.fixedRows(), filterOnAll);
             obj.rows(filteredArray);
         };
         ko.utils.arrayForEach(obj.columns(), function (column) {
