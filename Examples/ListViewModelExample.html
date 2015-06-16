@@ -1,0 +1,50 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+<head>    
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.start.js"></script>
+    <script src="../scripts/BindingHandlers/knockout.type.js"></script>
+    <script src="../scripts/Models/Property.js"></script>
+    <script src="../scripts/ElementViewModels/ElementViewModel.js"></script>
+    <script src="../scripts/ElementViewModels/ListViewModel.js"></script>
+    <!-- Step 4 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){
+		    <!-- Step 5 - Create the data -->
+            list = ["Jake", "Alexis", "Kendra"];
+            type = "A";
+            tag = "<ol>";
+            start = 10;
+            vm = new ListViewModel(list, type, tag, start);
+			
+            <!-- Step 7 - Activate knockout.js bindings -->
+            ko.applyBindings(vm);
+        });
+    </script>
+</head>
+<body>
+    <!-- Step 8 - Create a HTML Elements with bindings -->
+	<div id="List1">
+		<div data-bind="html: html"></div>	
+		<p>This example only needs a div element. This example uses html binding to add a complete list to a div.</p>
+	</div>
+
+	<div id="List2">
+		<ol data-bind="html: innerHtml"></ol>
+		<p>This example only needs an &lt;ol&gt; element. This example uses html binding to add to the list.</p>
+	</div>
+	
+	<div id="List3">
+		<ol data-bind="type: type, start: start, foreach: list">
+			<li data-bind="text: $data"></li>
+		</ol>
+		<p>This example needs has the list &lt;li&gt; html and uses foreach binding. This example does NOT use html binding.</p>
+	</div>
+<body>
+</html>

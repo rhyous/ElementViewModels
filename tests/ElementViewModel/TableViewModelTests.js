@@ -58,7 +58,7 @@ QUnit.test("Element inherited 'translate' field", function(assert) {
 
 QUnit.module("TableViewModel Constructor tests", {
   beforeEach: function() {
-	columns = ["First Name", "Last Name", "Date of Birth"];
+	columns = [new StringColumn(0,"First Name"), new StringColumn(1, "Last Name"), new DateColumn(2,"Date of Birth")];
 	rows = [["Johnny","Johns", "1/1/1992"],
 				["Billy","Bills", "7/21/1990"],
 				["Franky","Franks", "12/8/1989"],
@@ -75,15 +75,14 @@ QUnit.test("Constructor rows().", function(assert) {
 });
 
 QUnit.test("Constructor columns().", function(assert) {
-	assert.expect(vm.columnNames().length);
-	for (i = 0; i < vm.columnNames().length; ++i)
-		assert.equal(vm.columnNames()[i], columns[i]);
+	assert.expect(vm.columns().length);
+	for (i = 0; i < vm.columns().length; ++i)
+		assert.equal(vm.columns()[i], columns[i]);
 });
 
 QUnit.test("Constructor caption().", function(assert) {
 		assert.equal(vm.caption(), caption);
 });
-
 
 QUnit.module("TableViewModel Html tests", {
   beforeEach: function() {
@@ -106,10 +105,10 @@ QUnit.test("tbody", function(assert) {
 	assert.equal(vm.tbody(), expected);
 });
 
-QUnit.test("tbody", function(assert) {
-	var expected = "<caption>Contact List</caption>\n" +
+QUnit.test("table", function(assert) {
+	var expected = "<table>\n<caption>Contact List</caption>\n" +
 					"<tr>\n\t<th>First Name</th><th>Last Name</th><th>Date of Birth</th>\n</tr>\n" +
 					"<tr>\n\t<td>Johnny</td><td>Johns</td><td>1/1/1992</td>\n</tr>\n" +
-					"<tr>\n\t<td>Billy</td><td>Bills</td><td>7/21/1990</td>\n</tr>\n";
+					"<tr>\n\t<td>Billy</td><td>Bills</td><td>7/21/1990</td>\n</tr>\n</table>\n";
 	assert.equal(vm.table(), expected);
 });

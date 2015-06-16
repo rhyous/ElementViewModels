@@ -1,0 +1,35 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+
+<head>    
+    <!-- Step 2 - Include jquery and knockout -->
+    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
+    
+    <!-- Step 3 - Include Model, ViewModels, etc. -->
+    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
+    <script src="../scripts/Models/Property.js"></script>
+    <script src="../scripts/Models/ButtonModel.js"></script>
+    <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
+    <script src="../scripts/CompoundViewModels/AreYouSureViewModel.js"></script>
+    <!-- Step 5 - Include the business -->
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            <!-- Step 9 -  Activates knockout.js bindings -->
+            var text = "Are you sure?";
+            var onYesClick = function() { alert("You clicked Yes."); }
+            var onNoClick = function() { alert("You clicked No."); }
+            var areYouSure = new AreYouSureViewModel(text, onYesClick, onNoClick);
+            ko.applyBindings(areYouSure);
+        });
+    </script>
+</head>
+<body>
+    <div data-bind="text: text"></div>
+    <div>
+        <button id="login" data-bind="text: yes.text, click: yes.onClick"></button>
+        <button id="login" data-bind="text: no.text, click: no.onClick"></button>
+    </div>
+<body>
+</html>

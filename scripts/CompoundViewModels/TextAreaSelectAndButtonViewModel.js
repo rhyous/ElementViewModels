@@ -8,19 +8,19 @@
 //  knockout.placeholder.js - needed if you want to bind the placeholder with easy syntax
 
 var TextAreaSelectAndButtonViewModel = TextAreaSelectAndButtonViewModel || function (textAreaModel, buttonModel, optionViewModelArray, child) {
-	var _self = this;
-	var _textAreaModel = textAreaModel;
-	var _buttonModel = buttonModel;
-	var _optionViewModelArray = optionViewModelArray;
-	var _child = child;
-	_self.base = new TextAreaAndButtonViewModel(_textAreaModel, _buttonModel, _self);
+    var _self = this;
+    var _textAreaModel = textAreaModel;
+    var _buttonModel = buttonModel;
+    var _optionViewModelArray = optionViewModelArray;
+    var _child = child;
+    _self.base = new TextAreaAndButtonViewModel(_textAreaModel, _buttonModel, _self);
 
-	_self.init = function (obj) {
+    _self.init = function (obj) {
         obj.select = _self.SelectViewModel || new SelectViewModel(optionViewModelArray);
-	};
+    };
 
-	_self.init(_self);
-	if (_child) {
-		_self.init(_child);
-	}
+    _self.init(_self);
+    if (_child) {
+        _self.init(_child);
+    }
 };

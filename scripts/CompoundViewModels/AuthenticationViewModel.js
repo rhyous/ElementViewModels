@@ -31,7 +31,7 @@ var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, b
         onError(errMsg);
         _self.submitButton.isRunning(false);
     } : _self.onFailure; // If onError is null, use onFailure
-    
+
     _self.user = new TextBoxViewModel(new TextBoxModel("", defaultUserPlaceholder));
     _self.password = new TextBoxViewModel(new TextBoxModel("", defaultPasswordPlaceholder));
 
