@@ -11,9 +11,38 @@ UI Control - A UI element
 Compound UI Control - A control made up of one or more smaller controls
 Knockout.js - A framework that supports MVVM for JavaScript (code) and Html (view).
 
-# Element ViewModels #
-BaseClassTemplate - A template for base classes in javascript. (Does not use protoypal inheritance.)
-BaseElement - The base class for all elements. All elements should inherit this.
-ButtonViewModel - 
-TextBoxViewModel - For use with text input.
-TextAreaViewModel - Inherits TextBoxViewModel.
+# Scripts #
+
+Note: All scripts are separated into 1 file per object mostly, with the idea for now being to grab only the ones you need.
+
+ElementViewModels\BaseElement.js
+ElementViewModels\ButtonViewModel.js
+ElementViewModels\ElementViewModel.js
+ElementViewModels\ListViewModel.js
+ElementViewModels\OptionViewModel.js
+ElementViewModels\RadioButtonViewModel.js
+ElementViewModels\SelectViewModel.js
+ElementViewModels\TableViewModel.js
+ElementViewModels\TextAreaViewModel.js
+ElementViewModels\TextBoxViewModel.js
+
+Models\ButtonModel.js
+Models\ColumnModel.js
+Models\Property.js
+Models\RadioButtonModel.js
+Models\TextAreaModel.js
+Models\TextBoxModel.js
+
+BindingHandlers\knockout.areaRowsColumns.js
+BindingHandlers\knockout.datepicker.js
+BindingHandlers\knockout.enterkey.js
+BindingHandlers\knockout.placeholder.js
+BindingHandlers\knockout.slideToggle.js
+BindingHandlers\knockout.start.js
+BindingHandlers\knockout.type.js
+
+CompoundViewModels\AreYouSureViewModel.js
+CompoundViewModels\AuthenticationViewModel.js
+CompoundViewModels\TextAreaAndButtonViewModel.js
+CompoundViewModels\TextAreaSelectAndButtonViewModel.js
+CompoundViewModels\TextBoxAndButtonViewModel.js
