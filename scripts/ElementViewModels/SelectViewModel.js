@@ -1,29 +1,40 @@
-﻿var SelectViewModel = SelectViewModel || function (optionViewModelArray, defaultValue, canSelectMethod, child) {
+﻿var SelectViewModel = SelectViewModel || function (options, defaultValue, canSelectMethod, child) {
     // private
     var _self = this;
-    var _optionViewModelArray = optionViewModelArray;
-    var _defaultValue = defaultValue || (_optionViewModelArray && _optionViewModelArray.length > 0) ? _optionViewModelArray[0] : null;
+    var _options = options;
+    var _defaultValue = defaultValue || (_options && _options.length > 0) ? _options[0] : null;
     var _canSelectMethod = canSelectMethod;
     var _child = child;
 
     // Public
     _self.base = new BaseElement(_self);
     _self.init = function (obj) {
+        if (Array.isArray(_options) && _options.length > 0) {
+            var newArray = [];
+            for (var i = 0; i < _options.length; ++i) {
+                if (_options[i] instanceof OptionViewModel || (_options[i].base && _options[i].base instanceof OptionViewModel)) {
+                    newArray.push(_options[i]);
+                } else {
+                    newArray.push(new OptionViewModel(_options[i]));
+                }
+            }
+            _options = newArray;
+        }
         obj.canSelect = _self.canSelect || ko.computed(function () {
             return _canSelectMethod ? _canSelectMethod() : true;
         });
         obj.list = _self.list || ko.observableArray();
         obj.selectedValue = ko.observable(_defaultValue);
-
+        
         obj.add = function (text, value, canSelectMethod) {
             obj.list.push(new OptionViewModel(text, value, canSelectMethod, obj));
         };
 
-        if (_optionViewModelArray) {
-            for (var i = 0; i < _optionViewModelArray.length; i++) {
-                _optionViewModelArray[i].parent = obj;
-                _optionViewModelArray[i].canSelectMethod(obj.canSelect);
-                obj.list.push(_optionViewModelArray[i]);
+        if (_options) {
+            for (var id = 0; id < _options.length; id++) {
+                _options[id].parent = obj;
+                _options[id].canSelectMethod(obj.canSelect);
+                obj.list.push(_options[id]);
             }
         }
 
@@ -31,7 +42,7 @@
             var index = 0;
             var foundIndex = -1;
             ko.utils.arrayForEach(obj.list(), function (item) {
-                if (obj.selectedValue() == item.value()) {
+                if (obj.selectedValue() === item.value()) {
                     foundIndex = index;
                     return;
                 }
@@ -51,7 +62,5 @@
     };
 
     _self.init(_self);
-    if (_child) {
-        _self.init(_child);
-    }
+    if (_child) { _self.init(_child); }
 };

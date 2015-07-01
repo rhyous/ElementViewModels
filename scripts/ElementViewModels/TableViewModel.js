@@ -8,8 +8,8 @@ var TableViewModel = TableViewModel || function (columns, rows, caption, child) 
     _self.init = function (obj) {
         new BaseElement(obj);
         if (Array.isArray(columns) && _columns.length > 0) {
-            var newArray = [];            
-            for (var i = 0; i < _columns.length; ++i) {         
+            var newArray = [];
+            for (var i = 0; i < _columns.length; ++i) {
                 if (_columns[i] instanceof ColumnModel || (_columns[i].base && _columns[i].base instanceof ColumnModel)) {
                     newArray.push(columns[i]);
                 } else if (obj.isString(_columns[i])) {
@@ -24,47 +24,61 @@ var TableViewModel = TableViewModel || function (columns, rows, caption, child) 
         obj.columns = _self.columns || ko.observableArray(_columns);
         obj.fixedRows = _self.fixedRows || ko.observableArray(_rows);
         obj.rows = _self.rows || ko.observableArray(_rows.slice(0));
+        obj.fixedRows.subscribe(function () { _self.rows(obj.fixedRows().slice(0)) });
         obj.onHeaderClick = function (column) {
             obj.rows.sort(column.sortMethod);
             if (column.sortReverse()) { obj.rows.reverse(); }
             column.sortReverse(!column.sortReverse());
         };
-        var filterOnAll = function(data) {            
+        var filterOnAll = function (data) {
             for (var i = 0; i < obj.columns().length; ++i) {
-                if (!obj.columns()[i].filterMethod(data)) { return false; }                
+                if (obj.isNullOrWhitespace(obj.columns()[i].filter()))
+                    continue;
+                if (!obj.columns()[i].filterMethod(data)) {
+                    return false;
+                }
             }
             return true;
-        }
+        };
         obj.onHeaderFilter = function (column) {
             var filteredArray = ko.utils.arrayFilter(obj.fixedRows(), filterOnAll);
             obj.rows(filteredArray);
         };
         ko.utils.arrayForEach(obj.columns(), function (column) {
-            var applyFilter = function() {
+            var applyFilter = function () {
                 obj.onHeaderFilter(column);
             };
             column.filter.subscribe(applyFilter);
         });
         obj.caption = _self.caption || ko.observable(_caption);
 
+        obj.headerRow = _self.headerRow || ko.computed(function () {
+            var html = "  <tr data-bind=\"foreach: {data: columns, as: 'col'}\">\n"
+					 + "    <th data-bind=\"text: col.text.get(), css: 'column-' + col.text.get().split(/[\s/]+/).join('-')\">\n"
+                     + "  </tr>\n";
+            return html;
+        });
+        
         obj.thead = _self.thead || ko.computed(function () {
-            var html = "<tr>\n\t";
-            ko.utils.arrayForEach(obj.columns(), function (column) {
-                html += "<th>" + column.text.get() + "</th>";
-            });
-            html += "\n</tr>\n";
+            var html = "<thead>\n"
+                     + obj.headerRow()
+                     + "</thead>\n";
             return html;
         });
 
+        obj.dataRow = _self.dataRow || ko.computed(function () {
+            var html = "  <!-- ko foreach: {data: rows, as: 'item'} -->\n"
+                     + "  <tr data-bind=\"foreach: {data: $parent.columns, as: 'col'}\">\n"
+					 + "    <td data-bind=\"text: col.getFieldValue(item, null, $index()), css: 'column-' + col.text.get().split(/[\s/]+/).join('-')\">\n"
+                     + "  </tr>\n"
+                     + "  <!-- /ko -->\n";
+            return html;
+        });
+        
         obj.tbody = _self.tbody || ko.computed(function () {
-            var html = "";
-            ko.utils.arrayForEach(obj.rows(), function (row) {
-                html += "<tr>\n\t";
-                ko.utils.arrayForEach(row, function (item) {
-                    html += "<td>" + item + "</td>";
-                });
-                html += "\n</tr>\n";
-            });
+            var html = "<tbody>\n"
+                     + obj.dataRow()
+                     + "</tbody>\n";
             return html;
         });
 
@@ -81,6 +95,14 @@ var TableViewModel = TableViewModel || function (columns, rows, caption, child) 
         obj.table = _self.table || ko.computed(function () {
             return "<table>\n" + obj.innerHtml() + "</table>\n";
         });
+
+        obj.defaultColumnTemplate = ko.observable("table-default-column-template");
+        obj.firstColumnTemplate = ko.observable("table-first-column-template");
+        obj.template = function (column) {
+            return (Array.isArray(obj.columns()) && obj.columns().length > 0 && obj.columns()[0] === column && !obj.isNullOrWhitespace(obj.firstColumnTemplate()))
+                ? obj.firstColumnTemplate()
+                : obj.defaultColumnTemplate();
+        };
     };
 
     _self.init(_self);

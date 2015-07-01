@@ -7,16 +7,16 @@
 //  knockout.areaRowsColumns.js - needed if you want to bind rows and columns.
 //  knockout.placeholder.js - needed if you want to bind the placeholder with easy syntax
 
-var TextAreaSelectAndButtonViewModel = TextAreaSelectAndButtonViewModel || function (textAreaModel, buttonModel, optionViewModelArray, child) {
+var TextAreaSelectAndButtonViewModel = TextAreaSelectAndButtonViewModel || function (textAreaModel, buttonModel, orgTextBoxModel, nameTextBoxModel, options, child) {
     var _self = this;
     var _textAreaModel = textAreaModel;
     var _buttonModel = buttonModel;
-    var _optionViewModelArray = optionViewModelArray;
+    var _options = options;
     var _child = child;
     _self.base = new TextAreaAndButtonViewModel(_textAreaModel, _buttonModel, _self);
 
     _self.init = function (obj) {
-        obj.select = _self.SelectViewModel || new SelectViewModel(optionViewModelArray);
+        obj.select = _self.SelectViewModel || new SelectViewModel(_options);
     };
 
     _self.init(_self);

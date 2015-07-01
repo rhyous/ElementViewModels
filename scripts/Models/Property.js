@@ -23,9 +23,7 @@ var Property = Property || function (value, child) {
     };
 
     _self.init(_self, value);
-    if (_child) {
-        _self.init(_child, value);
-    }
+    if (_child) { _self.init(_child, value); }
 };
 
 var StringProperty = StringProperty || function (value) {

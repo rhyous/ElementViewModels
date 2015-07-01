@@ -6,12 +6,10 @@ var TextBoxModel = TextBoxModel || function (text, placeholder, onEnterKeyPresse
     var _child = child;
 
     _self.init = function (obj) {
-        obj.text = new StringProperty(text);
-        obj.placeholder = new StringProperty(placeholder);
-        obj.onEnterKeyPressed = onEnterKeyPressed || null;
-    }
+        obj.text = new StringProperty(_text);
+        obj.placeholder = new StringProperty(_placeholder);
+        obj.onEnterKeyPressed = _onEnterKeyPressed || null;
+    };
     _self.init(_self);
-    if (_child) {
-        _self.init(_child);
-    }
+    if (_child) { _self.init(_child); }
 };

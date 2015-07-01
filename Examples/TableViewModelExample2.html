@@ -15,14 +15,21 @@
     <!-- Step 4 - Include the business -->
     <script type="text/javascript" >
         $(document).ready(function(){
+            var Person = function(fName, lName, dob) {
+                var _self = this;
+                _self.firstName = new StringProperty(fName);
+                _self.lastName = new StringProperty(lName);
+                _self.dateOfBirth = new Date(dob);
+            };
+        
 		    <!-- Step 5 - Create the data -->
-            var columns = [new StringColumn(0, "First Name"), 
-                           new StringColumn(1, "Last Name"),
-                           new DateColumn(2, "Date of Birth")];
-			var rows = [["Johnny","Johns", "1/1/1992"],
-						["Billy","Bills", "7/21/1990"],
-						["Franky","Franks", "12/8/1989"],
-						["Linda","Linderson", "4/30/2001"]]
+            var columns = [new StringColumn(0, "First Name", "firstName.get()"), 
+                           new StringColumn(1, "Last Name", "lastName.get()"),
+                           new DateColumn(2, "Date of Birth", "dateOfBirth")];
+			var rows = [new Person("Johnny","Johns", "Jan 1, 1992"),
+						new Person("Billy","Bills", "July 21, 1990"),
+						new Person("Franky","Franks", "Dec 1, 1989"),
+						new Person("Linda","Linderson", "Apr 30, 2001")];
 			var caption = "Contact List";
 			<!-- Step 6 - Create the ViewModel -->
             var table = new TableViewModel(columns, rows, caption);
@@ -96,9 +103,9 @@
                     </th>
 				</tr>
 			</thead>
-			<tbody data-bind="foreach: {data: rows, as: 'row'}">
+			<tbody data-bind="foreach: {data: rows, as: 'person'}">
 				<tr data-bind="foreach: {data: $parent.columns, as: 'col'}">
-					<td data-bind="text: col.getFieldValue(row, null, $index()), css: 'column-' + col.text.get().split(/[\s/]+/).join('-')">
+					<td data-bind="text: col.getFieldValue(person, null, $index()), css: 'column-' + col.text.get().split(/[\s/]+/).join('-')">
 				</tr>
 			</tbody>
 		</table>

@@ -95,20 +95,40 @@ QUnit.module("TableViewModel Html tests", {
 });
 
 QUnit.test("Html for thead", function(assert) {
-	var expected = "<tr>\n\t<th>First Name</th><th>Last Name</th><th>Date of Birth</th>\n</tr>\n";
+	var expected = "<thead>\n\
+  <tr data-bind=\"foreach: {data: columns, as: 'col'}\">\n\
+    <th data-bind=\"text: col.text.get(), css: 'column-' + col.text.get().split(/[s/]+/).join('-')\">\n\
+  </tr>\n\
+</thead>\n";
 	assert.equal(vm.thead(), expected);
 });
 
 QUnit.test("tbody", function(assert) {
-	var expected = "<tr>\n\t<td>Johnny</td><td>Johns</td><td>1/1/1992</td>\n</tr>\n" +
-					"<tr>\n\t<td>Billy</td><td>Bills</td><td>7/21/1990</td>\n</tr>\n";
+	var expected = "<tbody>\n\
+  <!-- ko foreach: {data: rows, as: 'item'} -->\n\
+  <tr data-bind=\"foreach: {data: $parent.columns, as: 'col'}\">\n\
+    <td data-bind=\"text: col.getFieldValue(item, null, $index()), css: 'column-' + col.text.get().split(/[s/]+/).join('-')\">\n\
+  </tr>\n\
+  <!-- /ko -->\n\
+</tbody>\n";
 	assert.equal(vm.tbody(), expected);
 });
 
 QUnit.test("table", function(assert) {
-	var expected = "<table>\n<caption>Contact List</caption>\n" +
-					"<tr>\n\t<th>First Name</th><th>Last Name</th><th>Date of Birth</th>\n</tr>\n" +
-					"<tr>\n\t<td>Johnny</td><td>Johns</td><td>1/1/1992</td>\n</tr>\n" +
-					"<tr>\n\t<td>Billy</td><td>Bills</td><td>7/21/1990</td>\n</tr>\n</table>\n";
+	var expected = "<table>\n\
+<caption>Contact List</caption>\n\
+<thead>\n\
+  <tr data-bind=\"foreach: {data: columns, as: 'col'}\">\n\
+    <th data-bind=\"text: col.text.get(), css: 'column-' + col.text.get().split(/[s/]+/).join('-')\">\n\
+  </tr>\n\
+</thead>\n\
+<tbody>\n\
+  <!-- ko foreach: {data: rows, as: 'item'} -->\n\
+  <tr data-bind=\"foreach: {data: $parent.columns, as: 'col'}\">\n\
+    <td data-bind=\"text: col.getFieldValue(item, null, $index()), css: 'column-' + col.text.get().split(/[s/]+/).join('-')\">\n\
+  </tr>\n\
+  <!-- /ko -->\n\
+</tbody>\n\
+</table>\n";
 	assert.equal(vm.table(), expected);
 });

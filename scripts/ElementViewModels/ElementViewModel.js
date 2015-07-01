@@ -20,7 +20,5 @@ var ElementViewModel = ElementViewModel || function (tag, child) {
         });
     };
     _self.init(_self);
-    if (_child) {
-        _self.init(_child);
-    }
+    if (_child) { _self.init(_child); }
 };

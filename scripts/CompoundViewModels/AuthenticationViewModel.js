@@ -8,8 +8,8 @@
 // Note: Supports loginMethod, beforelogin, and for ajax supports 
 var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, beforeLogin, onSuccess, onFailure, onError) {
     var _self = this;
-    var defaultUserPlaceholder = "Please enter your username . . .";
-    var defaultPasswordPlaceholder = "Please enter your password . . .";
+    var _defaultUserPlaceholder = "Please enter your username . . .";
+    var _defaultPasswordPlaceholder = "Please enter your password . . .";
     var isNullOrWhitespace = function (str) {
         return !str || str.replace(/\s/g, '').length < 1;
     };
@@ -32,17 +32,17 @@ var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, b
         _self.submitButton.isRunning(false);
     } : _self.onFailure; // If onError is null, use onFailure
 
-    _self.user = new TextBoxViewModel(new TextBoxModel("", defaultUserPlaceholder));
-    _self.password = new TextBoxViewModel(new TextBoxModel("", defaultPasswordPlaceholder));
-
-    var _loginButtonCanClick = ko.computed(function () {
-        return _self.user !== null && !isNullOrWhitespace(_self.user.text()) && _self.password != null && !isNullOrWhitespace(_self.password.text());
-    }, _self);
-
     var _loginButtonClick = function () {
         if (!_loginButtonCanClick()) { return; }
         _self.beforeLogin();
         _loginMethod({ "User": _self.user.text(), "Password": _self.password.text() }, _self.onSuccess, _self.onFailure, _self.onError);
     };
+    _self.user = new TextBoxViewModel(new TextBoxModel("", _defaultUserPlaceholder, _loginButtonClick));
+    _self.password = new TextBoxViewModel(new TextBoxModel("", _defaultPasswordPlaceholder, _loginButtonClick));
+    
+    var _loginButtonCanClick = ko.computed(function () {
+        return _self.user !== null && !isNullOrWhitespace(_self.user.text()) && _self.password != null && !isNullOrWhitespace(_self.password.text());
+    }, _self);
+    
     _self.submitButton = new ButtonViewModel(new ButtonModel("Login", _loginButtonClick, _loginButtonCanClick, false));
 }

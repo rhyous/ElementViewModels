@@ -25,9 +25,7 @@ var ButtonViewModel = ButtonViewModel || function (buttonModel, child) {
             return !obj.isRunning() && (!(_buttonModel.canClickMethod) || _buttonModel.canClickMethod());
         });
         obj.class = ko.observable();
-    }
+    };
     _self.init(_self);
-    if (child) {
-        _self.init(child);
-    }
+    if (child) { _self.init(child); }
 };

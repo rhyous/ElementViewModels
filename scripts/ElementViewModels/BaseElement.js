@@ -17,7 +17,7 @@ var BaseElement = BaseElement || function (child) {
         child.translate = ko.observable();
         child.isString = function(val) {
             return typeof val == 'string' || val instanceof String;
-        }
+        };
         child.isNullOrWhitespace = function (str) {
             return !str || String(str).replace(/\s/g, '').length < 1;
         };
