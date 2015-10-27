@@ -4,6 +4,7 @@
 //  knockout.enterkey.js - needed if the html control this bind to is not inside a form and you
 //                         want the enter key to work when the textbox has focus
 //  knockout.placeholder.js - needed if you want to bind the placeholder with easy syntax
+//  knockout.maxlength.js = needed if you want to enforce a maxlength
 
 var TextBoxAndButtonViewModel = TextBoxAndButtonViewModel || function (textBoxModel, buttonModel, customValidationMethod, child) {
 	var _self = this;
