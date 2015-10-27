@@ -18,7 +18,7 @@
 ko.bindingHandlers.helpText = ko.bindingHandlers.helpText || {
     init: function (element, valueAccessor) {
         var underlyingObservable = valueAccessor();
-        ko.applyBindingsToNode(element, { attr: { "data-intro": underlyingObservable } });
+        ko.applyBindingsToNode(element, { attr: { "data-help": underlyingObservable } });
     }
 };
 
