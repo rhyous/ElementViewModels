@@ -35,7 +35,7 @@ var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, b
     var _loginButtonClick = function () {
         if (!_loginButtonCanClick()) { return; }
         _self.beforeLogin();
-        _loginMethod({ "User": _self.user.text(), "Password": _self.password.text() }, _self.onSuccess, _self.onFailure, _self.onError);
+        _loginMethod({ "User": _self.user.text().trim(), "Password": _self.password.text() }, _self.onSuccess, _self.onFailure, _self.onError);
     };
     _self.user = new TextBoxViewModel(new TextBoxModel("", _defaultUserPlaceholder, _loginButtonClick));
     _self.password = new TextBoxViewModel(new TextBoxModel("", _defaultPasswordPlaceholder, _loginButtonClick));
