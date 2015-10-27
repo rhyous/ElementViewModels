@@ -28,6 +28,7 @@ var BaseElement = BaseElement || function (child) {
     if (_child) { _self.init(_child); }
 };
 
+// Requuires knockout.maxlength.js
 var TextElement = TextElement || function (text, maxLength, child) {
     var _self = this;
     var _text = text;
