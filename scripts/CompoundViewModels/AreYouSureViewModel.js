@@ -13,6 +13,7 @@ var AreYouSureViewModel = AreYouSureViewModel || function (text, onYesClick, onN
     _self.init = function (obj) {
         obj.text = _self.text || new ko.observable(_text);
         obj.yes = _self.yes || new ButtonViewModel(new ButtonModel("Yes", _onYesClick, _yesCanClick));
+        obj.yes.hasFocus = _self.yes.hasFocus || new ko.observable(true);
         obj.no = _self.no || new ButtonViewModel(new ButtonModel("No", _onNoClick, _noCanClick));
     };
 
