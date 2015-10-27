@@ -8,7 +8,8 @@ var TextBoxViewModel = TextBoxViewModel || function (textBoxModel, child) {
     var _child = child;
 
     _self.init = function (obj) {
-        obj.base = new TextElement(_textBoxModel.text.get(), obj);
+        if (!obj) { return; }
+        obj.base = new TextElement(_textBoxModel.text.get(), _textBoxModel.maxLength.get(), obj);
         obj.placeholder = _self.placeholder || ko.observable(_textBoxModel.placeholder.get());
         obj.onEnterKeyPressed = _onEnterKeyPressed;
         obj.hasFocus = _self.hasFocus || ko.observable(false);

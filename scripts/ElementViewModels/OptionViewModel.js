@@ -6,7 +6,7 @@ var OptionViewModel = OptionViewModel || function (text, value, canSelectMethod,
     var _canSelectMethod = canSelectMethod;
     var _parent = parentSelect;
     var _child = child;
-    _self.base = new TextElement(_text, _self);
+    _self.base = new TextElement(_text, null, _self);
 
     _self.init = function (obj, isChild) {
         if (isChild) { _self.base.init(obj) };

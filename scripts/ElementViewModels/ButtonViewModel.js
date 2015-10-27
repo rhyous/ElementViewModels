@@ -4,7 +4,7 @@ var ButtonViewModel = ButtonViewModel || function (buttonModel, child) {
     var _buttonModel = buttonModel || new ButtonModel();
 
     _self.init = function (obj) {
-        new TextElement(_buttonModel.text.get(), obj);
+        new TextElement(_buttonModel.text.get(), null, obj);
         // Public
         _self.buttonModel = _buttonModel;
         obj.autoEnableButtonAfterOnClick = ko.observable(_buttonModel.autoEnableButtonAfterOnClick.get());
