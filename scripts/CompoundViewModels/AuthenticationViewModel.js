@@ -44,5 +44,5 @@ var AuthenticationViewModel = AuthenticationViewModel = function (loginMethod, b
         return _self.user !== null && !isNullOrWhitespace(_self.user.text()) && _self.password != null && !isNullOrWhitespace(_self.password.text());
     }, _self);
     
-    _self.submitButton = new ButtonViewModel(new ButtonModel("Login", _loginButtonClick, _loginButtonCanClick, false));
+    _self.submitButton = new ButtonViewModel(new ButtonModel("Login", _loginButtonClick, _loginButtonCanClick, true));
 }
