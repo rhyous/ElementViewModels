@@ -1,4 +1,4 @@
-loadModule(window.define, "StringColumn", ["ColumnModel"], [ColumnModel], function(ColumnModel){
+loader("StringColumn", ["Models/ColumnModel"], function(ColumnModel){
         var StringColumn = StringColumn || function (index, text, datafield, child) {
             var _self = this;
             var _index = index;

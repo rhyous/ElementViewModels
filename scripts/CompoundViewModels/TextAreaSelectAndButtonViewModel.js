@@ -1,15 +1,13 @@
-// Requirements:
-//  knockout, BaseElement, TextBoxModel, TextAreaModel, TextBoxViewModel, TextAreaViewModel, ButtonModel, ButtonViewModel
-//  TextAreaAndButtonViewModel, OptionViewModel, SelectViewModel
-// Conditional requirement:
-//  knockout.enterkey.js - needed if the html control this bind to is not inside a form and you
-//                         want the enter key to work when the textbox has focus
-//  knockout.areaRowsColumns.js - needed if you want to bind rows and columns.
-//  knockout.placeholder.js - needed if you want to bind the placeholder with easy syntax
-loadModule(window.define, "TextAreaSelectAndButtonViewModel",
-    ["ko", "SelectViewModel", "TextAreaAndButtonViewModel"],
-    [ko, SelectViewModel, TextAreaAndButtonViewModel],
-    function(ko,SelectViewModel){
+var deps = ["ko", 
+            "ElementViewModels/SelectViewModel", 
+            "CompoundViewModels/TextAreaAndButtonViewModel",
+            "BindingHandlers/ko_bh_enterkey",
+            "BindingHandlers/ko_bh_columns"],
+            "BindingHandlers/ko_bh_rows",
+            "BindingHandlers/ko_bh_placeholder"];
+            ];
+loader("TextAreaSelectAndButtonViewModel", deps,
+    function(ko, SelectViewModel, TextAreaAndButtonViewModel){
         var TextAreaSelectAndButtonViewModel = function (textAreaModel, buttonModel, options, child) {
             var _self = this;
             var _textAreaModel = textAreaModel;

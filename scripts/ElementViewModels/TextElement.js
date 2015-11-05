@@ -1,6 +1,5 @@
-loadModule(window.define, "TextElement",
-    ["ko", "BaseElement", "extenders/ko_ex_maxlength"],
-    [ko, BaseElement],
+loader("TextElement",
+    ["ko", "ElementViewModels/BaseElement", "Extenders/ko_ex_maxlength"],
     function(ko, BaseElement){
         var TextElement = function (text, maxLength, child) {
             var _self = this;

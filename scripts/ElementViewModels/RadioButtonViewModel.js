@@ -1,6 +1,5 @@
-﻿loadModule(window.define, "RadioButtonViewModel",
-    ["ko", "SelectableListDataModel"], // Todo: Can't find SelectableListDataModel, maybe use OptionViewModel?
-    [ko, SelectableListDataModel], 
+﻿loader("RadioButtonViewModel",
+    ["ko", "Models/SelectableListDataModel"], // Todo: Can't find SelectableListDataModel, maybe use OptionViewModel?
     function(ko){
         var RadioButtonViewModel = function (radioButtonDataModel, group) {
             // Private

@@ -1,4 +1,4 @@
-loadModule(window.define, "BaseElement", ["ko"], [ko], function(ko){
+loader("BaseElement", ["ko"], function(ko){
         var BaseElement = function(child) {
             var _self = this;
             var _child = child;

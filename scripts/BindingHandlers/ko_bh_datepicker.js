@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_bh_datepicker", ["ko"], [ko], function(ko){
+﻿loader("ko_bh_datepicker", ["ko"], function(ko){
         ko.bindingHandlers.datepicker = {
             init: function (element, valueAccessor, allBindingsAccessor) {
                 var options = allBindingsAccessor().datepickerOptions || {},

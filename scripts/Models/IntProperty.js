@@ -1,4 +1,4 @@
-loadModule(window.define, "IntProperty", ["Property"], [Property], function(Property){
+loader("IntProperty", ["Models/Property"], function(Property){
         var IntProperty = function (value) {
             var _self = this;
             _self.base = new Property(value, _self);

@@ -1,7 +1,9 @@
-loadModule(window.define, "ColumnModel", 
-            ["StringProperty". BoolProperty], 
-            [StringProperty, BoolProperty], 
-            function(StringProperty, BoolProperty){
+var deps = ["ko",
+            "Models/BoolProperty",
+            "Models/IntProperty",
+            "Models/StringProperty"];
+loader("ColumnModel", deps,
+    function(ko, BoolProperty, IntProperty, StringProperty ){
         var ColumnModel = ColumnModel || function (index, text, datafield, type, sortMethod, filterMethod, child) {
             var _self = this;
             var _index = index;

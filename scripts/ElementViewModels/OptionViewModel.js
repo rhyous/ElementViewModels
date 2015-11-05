@@ -1,4 +1,4 @@
-loadModule(window.define, "OptionViewModel", ["ko", "TextElement"], [ko, TextElement], 
+loader("OptionViewModel", ["ko", "ElementViewModels/TextElement"],
     function(ko, TextElement){
         var OptionViewModel = function (text, value, canSelectMethod, parentSelect, child) {
             // private

@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_bh_chardin", ["ko"], [ko], function(ko){
+﻿loader("ko_bh_chardin", ["ko"], function(ko){
         ko.bindingHandlers.help = {
             init: function (element, valueAccessor) {
                 if (valueAccessor().start !== undefined && valueAccessor.stop !== null) {

@@ -1,6 +1,5 @@
- loadModule(window.define, "TextAreaViewModel",
-    ["ko", "TextAreaModel", "TextBoxViewModel"],
-    [ko, TextAreaModel, TextBoxViewModel],
+ loader("TextAreaViewModel",
+    ["ko", "Models/TextAreaModel", "ElementViewModels/TextBoxViewModel"],
     function(ko, TextAreaModel, TextBoxViewModel){
       var TextAreaViewModel = function (textAreaModel, child) {
             var _self = this;

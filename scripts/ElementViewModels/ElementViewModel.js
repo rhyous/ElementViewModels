@@ -1,4 +1,4 @@
-loadModule(window.define, "ElementViewModel", ["ko", "BaseElement"], [ko, BaseElement],
+loader("ElementViewModel", ["ko", "ElementViewModels/BaseElement"],
     function(ko,BaseElement){
         var ElementViewModel = function (tag, child) {
             var _self = this;

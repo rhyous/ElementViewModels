@@ -1,7 +1,5 @@
-<!-- Step 1a - Create the HTML File or the View -->
 <!DOCTYPE html>
 <html>
-
 <head>
     <style>
     .wrapper {
@@ -56,51 +54,9 @@
         margin-top: 50px;
     }
     </style>
-    <!-- Step 2 - Include jquery and knockout -->
-    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
-    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.js"></script>
-    
-    <!-- Step 3 - Include Model, ViewModels, etc. -->
-    <script src="../scripts/loader.js"></script>
-    <script src="../scripts/BindingHandlers/ko_bh_enterkey.js"></script>
-    <script src="../scripts/BindingHandlers/ko_bh_placeholder.js"></script>
-    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
-    <script src="../scripts/ElementViewModels/TextElement.js"></script>
-    <script src="../scripts/Models/Property.js"></script>
-    <script src="../scripts/Models/BoolProperty.js"></script>
-    <script src="../scripts/Models/IntProperty.js"></script>
-    <script src="../scripts/Models/StringProperty.js"></script>
-    <script src="../scripts/Models/TextBoxModel.js"></script>
-    <script src="../scripts/ElementViewModels/TextBoxViewModel.js"></script>
-    <script src="../scripts/Models/ButtonModel.js"></script>
-    <script src="../scripts/ElementViewModels/ButtonViewModel.js"></script>
-    <script src="../scripts/CompoundViewModels/AuthenticationViewModel.js"></script>     
-    <!-- Step 5 - Include the business -->
-    <script type="text/javascript" >
-        $(document).ready(function(){
-            <!-- Step 9 -  Activates knockout.js bindings -->
-            var beforeLogin = function() { alert("_beforeLogin"); }
-            var loginSuccess = function() { alert("_loginSuccess"); }
-            var loginFailure = function() { alert("_loginFailure"); }
-            var loginError = function() { alert("_loginError"); }
-            
-            var loginMethod = function (data, onSuccess, onFailure, onError) {                    
-                alert("Login was clicked.");
-                if (data.User === "user1" && data.Password === "pw")
-                    onSuccess();
-                else if (data.User === "failure")
-                    onFailure();
-                else if (data.User === "error")
-                    onError();
-            };
-
-            ko.applyBindings(new AuthenticationViewModel(loginMethod, beforeLogin, loginSuccess, loginFailure, loginError));
-        });
-    </script>
+    <script type="text/javascript" data-main="main.js" src="./../../libs/require.js"></script>
 </head>
 <body>
-
-    <!-- Step 10 - Create a HTML Elements with bindings -->
     <div style="text-align: center">
         <div style="text-align:center; padding-top:110px; font-weight:bold; font-size:28px; color:#ACACAC;">
             Example Authentication

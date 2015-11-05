@@ -1,12 +1,11 @@
-﻿loadModule(window.define, "SelectViewModel",
-    ["ko", "BaseElement", "OptionViewModel"],
-    [ko, BaseElement, OptionViewModel], 
-    function(ko, BaseElement){
+﻿loader("SelectViewModel",
+    ["ko", "ElementViewModels/BaseElement", "ElementViewModels/OptionViewModel"],
+    function(ko, BaseElement, OptionViewModel){
         var SelectViewModel = function (options, defaultValue, canSelectMethod, child) {
             // private
             var _self = this;
             var _options = options;
-            var _defaultValue = defaultValue || (_options && _options.length > 0) ? _options[0] : null;
+            var _defaultValue = defaultValue || ((_options && _options.length > 0) ? _options[0] : null);
             var _canSelectMethod = canSelectMethod;
             var _child = child;
 
@@ -46,7 +45,7 @@
                     var index = 0;
                     var foundIndex = -1;
                     ko.utils.arrayForEach(obj.list(), function (item) {
-                        if (obj.selectedValue() === item.value()) {
+                        if (obj.selectedValue() && obj.selectedValue() === item.value()) {
                             foundIndex = index;
                             return;
                         }
@@ -61,7 +60,7 @@
                 });
 
                 obj.clear = _self.clear || function (value) {
-                    obj.selectedValue(value ? value : "");
+                    obj.selectedValue(value || _defaultValue);
                 };
             };
 

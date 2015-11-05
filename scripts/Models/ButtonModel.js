@@ -1,7 +1,5 @@
-loadModule(window.define, "ButtonModel", 
-            ["StringProperty", BoolProperty], 
-            [StringProperty, BoolProperty], 
-            function(StringProperty, BoolProperty){
+loader("ButtonModel", ["Models/StringProperty", "Models/BoolProperty"],
+    function(StringProperty, BoolProperty){
         var ButtonModel = ButtonModel || function (text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick) {
             var _self = this;
             _self.text = new StringProperty(text);

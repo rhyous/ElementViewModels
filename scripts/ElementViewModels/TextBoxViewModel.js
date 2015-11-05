@@ -1,6 +1,5 @@
-loadModule(window.define, "TextBoxViewModel",
-    ["ko", "TextBoxModel", "TextElement"],
-    [ko, TextBoxModel, TextElement],
+loader("TextBoxViewModel",
+    ["ko", "Models/TextBoxModel", "ElementViewModels/TextElement"],
     function(ko, TextBoxModel, TextElement){
         var TextBoxViewModel = function (textBoxModel, child) {
             // Private

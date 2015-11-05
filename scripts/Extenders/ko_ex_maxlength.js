@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_ex_maxlength", ["ko"], [ko], function(ko){
+﻿loader("ko_ex_maxlength", ["ko"], function(ko){
         ko.extenders.maxLength = function (target, maxLength) {
             var result = ko.computed({
                 read: target,

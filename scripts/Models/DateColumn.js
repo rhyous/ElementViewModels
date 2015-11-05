@@ -1,4 +1,4 @@
-loadModule(window.define, "DateColumn", ["ColumnModel"], [ColumnModel], function(ColumnModel){
+loader("DateColumn", ["Models/ColumnModel"], function(ColumnModel){
         var DateColumn = DateColumn || function (index, text, datafield, child) {
             var _self = this;
             var _index = index;

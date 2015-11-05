@@ -1,6 +1,5 @@
-loadModule(window.define, "TextAreaModel", 
-    ["IntProperty", "TextBoxModel"],
-    [IntProperty, TextBoxModel],
+loader("TextAreaModel", 
+    ["Models/IntProperty", "Models/TextBoxModel"],
     function(IntProperty, TextBoxModel){
         var TextAreaModel = function (text, placeholder, onEnterKeyPressed, rows, columns) {
             var _self = this;

@@ -1,4 +1,4 @@
-loadModule(window.define, "StringProperty", ["Property"], [Property], function(Property){
+loader("StringProperty", ["Models/Property"], function(Property){
         var TypedProperty = function (value, type) {
             var _self = this;
             var _type = type;
