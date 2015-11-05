@@ -1,4 +1,4 @@
-loadModule(window.define, "RadioButtonModel", ["ko"], [ko], function(ko){
+loader("RadioButtonModel", ["ko"], function(ko){
         var RadioButtonModel = function (parent, inText, inValue, inGroupName, canSelectMethod) {
             // Private
             var _self = this;

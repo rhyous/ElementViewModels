@@ -1,5 +1,11 @@
-loadModule(window.define, "TableViewModel", ["ko", "BaseElement"], [ko, BaseElement],
-    function(ko,BaseElement){
+var deps = ["ko", 
+            "ElementViewModels/BaseElement",
+            "Models/ColumnModel",
+            "Models/StringColumn",
+            "Models/DateColumn",
+            "BindingHandlers/ko_bh_boundHtml"]
+loader("TableViewModel", deps,
+    function(ko,BaseElement, ColumnModel, StringColumn, DateColumn){
         var TableViewModel = function (columns, rows, caption, child) {
             var _self = this;
             var _columns = columns;

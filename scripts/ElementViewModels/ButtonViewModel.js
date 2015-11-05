@@ -1,4 +1,5 @@
-loadModule(window.define, "ButtonViewModel", ["ko","ButtonModel"], [ko,ButtonModel], function(ko,ButtonModel){
+loader("ButtonViewModel", ["ko", "ElementViewModels/TextElement", "Models/ButtonModel"], 
+    function(ko, TextElement, ButtonModel){
         var ButtonViewModel = function (buttonModel, child) {
             // Private
             var _self = this;

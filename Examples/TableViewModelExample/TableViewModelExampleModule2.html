@@ -2,50 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>    
-    <!-- Step 2 - Include jquery and knockout -->
-    <script src="http://code.jquery.com/jquery-latest.pack.js"></script>
-    <script src="http://knockoutjs.com/downloads/knockout-3.3.0.js"></script>
-    
-    <!-- Step 3 - Include Model, ViewModels, etc. -->
-    <script src="../scripts/loader.js"></script>
-    <script src="../scripts/Models/Property.js"></script>
-    <script src="../scripts/Models/BoolProperty.js"></script>
-    <script src="../scripts/Models/IntProperty.js"></script>
-    <script src="../scripts/Models/StringProperty.js"></script>
-    <script src="../scripts/BindingHandlers/ko_bh_boundHtml.js"></script>
-    <script src="../scripts/ElementViewModels/BaseElement.js"></script>
-    <script src="../scripts/ElementViewModels/TextElement.js"></script>
-    <script src="../scripts/Models/ColumnModel.js"></script>
-    <script src="../scripts/Models/DateColumn.js"></script>
-    <script src="../scripts/Models/NumberColumn.js"></script>
-    <script src="../scripts/Models/StringColumn.js"></script>
-    <script src="../scripts/ElementViewModels/TableViewModel.js"></script>
-    <!-- Step 4 - Include the business -->
-    <script type="text/javascript" >
-        $(document).ready(function(){
-            var Person = function(fName, lName, dob) {
-                var _self = this;
-                _self.firstName = new StringProperty(fName);
-                _self.lastName = new StringProperty(lName);
-                _self.dateOfBirth = new Date(dob);
-            };
-        
-		    <!-- Step 5 - Create the data -->
-            var columns = [new StringColumn(0, "First Name", "firstName.get()"), 
-                           new StringColumn(1, "Last Name", "lastName.get()"),
-                           new DateColumn(2, "Date of Birth", "dateOfBirth")];
-			var rows = [new Person("Johnny","Johns", "Jan 1, 1992"),
-						new Person("Billy","Bills", "July 21, 1990"),
-						new Person("Franky","Franks", "Dec 1, 1989"),
-						new Person("Linda","Linderson", "Apr 30, 2001")];
-			var caption = "Contact List";
-			<!-- Step 6 - Create the ViewModel -->
-            var table = new TableViewModel(columns, rows, caption);
-			
-            <!-- Step 7 - Activate knockout.js bindings -->
-            ko.applyBindings(table);
-        });
-    </script>
+    <script type="text/javascript" data-main="main2.js" src="./../../libs/require.js"></script>
 	<style>
 		div.tablediv {
 			border: 1px solid black;

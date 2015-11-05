@@ -1,0 +1,80 @@
+<!-- Step 1a - Create the HTML File or the View -->
+<!DOCTYPE html>
+<html>
+<head>    
+    <script type="text/javascript" data-main="main.js" src="./../../libs/require.js"></script>
+	<style>
+		div.tablediv {
+			border: 1px solid black;
+			margin: 10px;
+			padding: 10px;
+			width: 400px;
+			padding: 10px;
+			float: left;
+		}
+        
+        .arrow-up {
+            margin-bottom: 1px;
+            width: 0; 
+            height: 0; 
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid black;
+        }
+
+        .arrow-down {
+            margin-top: 1px;
+            width: 0; 
+            height: 0; 
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid black;
+        }
+	</style>
+</head>
+<body>
+    <!-- Step 8 - Create a HTML Elements with bindings -->
+	<div class="tablediv" id="table1">
+		<div data-bind="boundHtml: table"></div>	
+		<p>This example only needs a div element. This example uses html binding to add a complete table to a div.</p>
+	</div>
+
+	<div class="tablediv" id="table2">
+		<table data-bind="boundHtml: innerHtml"></table>
+		<p>This example only needs a table element. This example uses only html binding.</p>
+	</div>
+	
+	<div class="tablediv" id="table3">
+		<table>
+			<caption data-bind="text: caption"></caption>
+			<thead data-bind="boundHtml: headerRow"></thead>
+			<tbody data-bind="boundHtml: dataRow"></tbody>
+		</table>
+		<p>This example needs a table and the thead, tbody, and optionally a caption. This example uses html binding for thead and tbody.</p>
+	</div>
+	
+	<div class="tablediv" id="table4">
+		<table>
+			<caption data-bind="text: caption"></caption>
+			<thead>
+				<tr data-bind="foreach: columns">
+					<th>
+                        <span data-bind="text: $data.text.get()"></span>
+                        <div style="display: inline-block;" data-bind="click: $root.onHeaderClick.bind($data)">
+                            <div class="arrow-up" data-bind="visible: $data.sortReverse"></div>
+                            <div class="arrow-down" data-bind="visible: !$data.sortReverse()"></div>
+                        </div>
+                        <input type="text" style="width: 20px" data-bind="value: $data.filter, valueUpdate:'afterkeydown', enterKey: $root.onHeaderFilter.bind($data)"/>
+                    </th>
+				</tr>
+			</thead>
+			<tbody data-bind="foreach: {data: rows, as: 'row'}">
+				<tr data-bind="foreach: {data: $parent.columns, as: 'col'}">
+					<td data-bind="text: col.getFieldValue(row, null, $index()), css: 'column-' + col.text.get().split(/[\s/]+/).join('-')">
+				</tr>
+			</tbody>
+		</table>
+		<p>This example needs has the table html and uses foreach binding. This example does NOT use html binding. This example binds to onHeaderClick for column sorting.</p>
+	</div>
+<body>
+</html>

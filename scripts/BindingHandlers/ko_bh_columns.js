@@ -1,4 +1,4 @@
-loadModule(window.define, "ko_bh_columns", ["ko"], [ko], function(ko){
+loader("ko_bh_columns", ["ko"], function(ko){
         ko.bindingHandlers.cols = {
             init : function (element, valueAccessor, allBindingsAccessor) {
                     var underlyingObservable = valueAccessor();

@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_bh_id", ["ko"], [ko], function(ko){
+﻿loader("ko_bh_id", ["ko"], function(ko){
         ko.bindingHandlers.id = {
             init: function (element, valueAccessor) {
                 var underlyingObservable = valueAccessor();

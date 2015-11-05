@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_bh_slideToggle", ["ko"], [ko], function(ko){
+﻿loader("ko_bh_slideToggle", ["ko"], function(ko){
         ko.bindingHandlers.slideToggle = {
             init: function (element, valueAccessor) {
                 var value = valueAccessor();

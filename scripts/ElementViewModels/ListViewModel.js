@@ -1,6 +1,5 @@
-loadModule(window.define, "ListViewModel", 
-    ["ko", "BaseElement", "ElementViewModel"], 
-    [ko, BaseElement, ElementViewModel],
+loader("ListViewModel", 
+    ["ko", "ElementViewModels/BaseElement", "ElementViewModels/ElementViewModel"],
     function(ko,BaseElement, ElementViewModel){
         var ListViewModel = function (list, type, tag, start, child) {
             // Private

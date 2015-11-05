@@ -1,4 +1,4 @@
-loadModule(window.define, "BoolProperty", ["Property"], [Property], function(Property){
+loader("BoolProperty", ["Models/Property"], function(Property){
         var BoolProperty = function (value) {
             var _self = this;
             _self.base = new Property(value, _self);

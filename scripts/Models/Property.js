@@ -1,4 +1,4 @@
-loadModule(window.define, "Property", null, null, function(){
+loader("Property", [], function(){
         var Property = function (value, child) {
             var _self = this;
             var _value = null;

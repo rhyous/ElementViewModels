@@ -1,4 +1,4 @@
-﻿loadModule(window.define, "ko_bh_enterkey", ["ko"], [ko], function(ko){
+﻿loader("ko_bh_enterkey", ["ko"], function(ko){
         ko.bindingHandlers.enterKey = {
             init: function (element, valueAccessor, allBindings, vm) {
                 ko.utils.registerEventHandler(element, "keypress", function (event) {

@@ -1,7 +1,6 @@
-loadModule(window.define, "TextBoxModel", 
-            ["IntProperty","StringProperty"],
-            [IntProperty,StringProperty],
-            function(StringProperty){
+loader("TextBoxModel", 
+            ["Models/IntProperty","Models/StringProperty"],
+            function(IntProperty, StringProperty){
         var TextBoxModel = TextBoxModel || function (text, placeholder, onEnterKeyPressed, maxLength, child) {
             var _self = this;
             var _text = text;
