@@ -1,4 +1,4 @@
-loader("Person", ["Models/StringProperty"],
+loader("Person", ["ElementModels/StringProperty"],
     function(StringProperty){
         var Person = function(fName, lName, dob) {
             var _self = this;

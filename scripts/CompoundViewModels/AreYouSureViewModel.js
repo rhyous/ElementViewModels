@@ -1,5 +1,5 @@
 loader("AreYouSureViewModel",
-    ["ko","Models/ButtonModel","ElementViewModels/ButtonViewModel"],
+    ["ko","ElementModels/ButtonModel","ElementViewModels/ButtonViewModel"],
     function(ko, ButtonModel, ButtonViewModel){
         var AreYouSureViewModel = function (text, onYesClick, onNoClick, yesCanClick, noCanClick, child) {
             var _self = this;

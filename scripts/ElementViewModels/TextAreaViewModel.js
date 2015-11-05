@@ -1,5 +1,5 @@
  loader("TextAreaViewModel",
-    ["ko", "Models/TextAreaModel", "ElementViewModels/TextBoxViewModel"],
+    ["ko", "ElementModels/TextAreaModel", "ElementViewModels/TextBoxViewModel"],
     function(ko, TextAreaModel, TextBoxViewModel){
       var TextAreaViewModel = function (textAreaModel, child) {
             var _self = this;

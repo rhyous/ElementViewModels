@@ -1,5 +1,5 @@
 loader("TextAreaModel", 
-    ["Models/IntProperty", "Models/TextBoxModel"],
+    ["ElementModels/IntProperty", "ElementModels/TextBoxModel"],
     function(IntProperty, TextBoxModel){
         var TextAreaModel = function (text, placeholder, onEnterKeyPressed, rows, columns) {
             var _self = this;

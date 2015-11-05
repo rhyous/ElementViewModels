@@ -1,8 +1,8 @@
 // Note: Supports loginMethod, beforelogin, and for ajax supports
 var deps = ["ko",
-            "Models/ButtonModel",
+            "ElementModels/ButtonModel",
             "ElementViewModels/ButtonViewModel",
-            "Models/TextBoxModel",
+            "ElementModels/TextBoxModel",
             "ElementViewModels/TextBoxViewModel",
             "BindingHandlers/ko_bh_enterkey",
             "BindingHandlers/ko_bh_placeholder",

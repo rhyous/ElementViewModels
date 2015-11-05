@@ -1,4 +1,4 @@
-loader("NumberColumn", ["Models/ColumnModel"], [ColumnModel], function(ColumnModel){
+loader("NumberColumn", ["ElementModels/ColumnModel"], [ColumnModel], function(ColumnModel){
         var NumberColumn = NumberColumn || function (index, text, datafield, child) {
             var _self = this;
             var _index = index;

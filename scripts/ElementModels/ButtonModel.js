@@ -1,4 +1,4 @@
-loader("ButtonModel", ["Models/StringProperty", "Models/BoolProperty"],
+loader("ButtonModel", ["ElementModels/StringProperty", "ElementModels/BoolProperty"],
     function(StringProperty, BoolProperty){
         var ButtonModel = ButtonModel || function (text, clickMethod, canClickMethod, autoEnableButtonAfterOnClick) {
             var _self = this;

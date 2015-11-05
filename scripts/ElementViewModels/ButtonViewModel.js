@@ -1,4 +1,4 @@
-loader("ButtonViewModel", ["ko", "ElementViewModels/TextElement", "Models/ButtonModel"], 
+loader("ButtonViewModel", ["ko", "ElementViewModels/TextElement", "ElementModels/ButtonModel"], 
     function(ko, TextElement, ButtonModel){
         var ButtonViewModel = function (buttonModel, child) {
             // Private

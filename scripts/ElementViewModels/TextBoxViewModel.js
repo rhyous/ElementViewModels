@@ -1,5 +1,5 @@
 loader("TextBoxViewModel",
-    ["ko", "Models/TextBoxModel", "ElementViewModels/TextElement"],
+    ["ko", "ElementModels/TextBoxModel", "ElementViewModels/TextElement"],
     function(ko, TextBoxModel, TextElement){
         var TextBoxViewModel = function (textBoxModel, child) {
             // Private

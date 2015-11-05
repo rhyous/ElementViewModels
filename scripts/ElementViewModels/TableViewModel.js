@@ -1,8 +1,8 @@
 var deps = ["ko", 
             "ElementViewModels/BaseElement",
-            "Models/ColumnModel",
-            "Models/StringColumn",
-            "Models/DateColumn",
+            "ElementModels/ColumnModel",
+            "ElementModels/StringColumn",
+            "ElementModels/DateColumn",
             "BindingHandlers/ko_bh_boundHtml"]
 loader("TableViewModel", deps,
     function(ko,BaseElement, ColumnModel, StringColumn, DateColumn){

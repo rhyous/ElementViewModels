@@ -10,14 +10,14 @@ require.config({
         // CompoundViewModels: "../../scripts/CompoundViewModels",
         // ElementViewModels: "../../scripts/ElementViewModels",
         // Extenders: "../../scripts/Extenders",
-        // Models: "../../scripts/Models"
+        // ElementModels: "../../scripts/Models"
     }
 });
 
 var deps = ["ko",
             "loader",
-            "Models/StringColumn", 
-            "Models/DateColumn",
+            "ElementModels/StringColumn", 
+            "ElementModels/DateColumn",
             "ElementViewModels/TableViewModel"];
 require(deps, function(ko, loader, StringColumn, DateColumn, TableViewModel) {
     var columns = [new StringColumn(0, "First Name"), 

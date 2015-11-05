@@ -2,7 +2,7 @@ var deps = ["ko",
             "ElementViewModels/SelectViewModel", 
             "CompoundViewModels/TextAreaAndButtonViewModel",
             "BindingHandlers/ko_bh_enterkey",
-            "BindingHandlers/ko_bh_columns"],
+            "BindingHandlers/ko_bh_columns",
             "BindingHandlers/ko_bh_rows",
             "BindingHandlers/ko_bh_placeholder"];
 loader("TextAreaSelectAndButtonViewModel", deps,

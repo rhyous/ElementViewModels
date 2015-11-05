@@ -1,4 +1,4 @@
-loader("IntProperty", ["Models/Property"], function(Property){
+loader("IntProperty", ["ElementModels/Property"], function(Property){
         var IntProperty = function (value) {
             var _self = this;
             _self.base = new Property(value, _self);

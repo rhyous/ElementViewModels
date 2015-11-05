@@ -1,7 +1,7 @@
 var deps = ["ko",
-            "Models/BoolProperty",
-            "Models/IntProperty",
-            "Models/StringProperty"];
+            "ElementModels/BoolProperty",
+            "ElementModels/IntProperty",
+            "ElementModels/StringProperty"];
 loader("ColumnModel", deps,
     function(ko, BoolProperty, IntProperty, StringProperty ){
         var ColumnModel = ColumnModel || function (index, text, datafield, type, sortMethod, filterMethod, child) {
