@@ -1,5 +1,7 @@
-var deps = ["ko", 
-            "ElementViewModels/ButtonViewModel", 
+var deps = ["ko",
+            "ElementModels/ButtonModel",
+            "ElementViewModels/ButtonViewModel",
+            "ElementModels/TextAreaModel",
             "CompoundViewModels/TextAreaViewModel",
             "BindingHandlers/ko_bh_enterkey",
             "BindingHandlers/ko_bh_columns",
@@ -7,11 +9,11 @@ var deps = ["ko",
             "BindingHandlers/ko_bh_placeholder"];
 loader("TextAreaAndButtonViewModel", 
     ["ko","ElementViewModels/ButtonViewModel","ElementViewModels/TextAreaViewModel"],
-    function(ko, ButtonViewModel, TextAreaViewModel){
+    function (ko, ButtonModel, ButtonViewModel, TextAreaModel, TextAreaViewModel) {
         var TextAreaAndButtonViewModel = function (textAreaModel, buttonModel, child) {
             var _self = this;
-            var _textAreaModel = textAreaModel;
-            var _buttonModel = buttonModel;
+            var _textAreaModel = textAreaModel instanceof TextAreaModel ? textAreaModel : new TextAreaModel(textAreaModel);
+            var _buttonModel = buttonModel instanceof ButtonModel ? buttonModel : new ButtonModel(buttonModel);
             var _child = child;
 
             _self.init = function (obj) {

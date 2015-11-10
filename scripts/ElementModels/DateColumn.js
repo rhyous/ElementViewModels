@@ -1,5 +1,6 @@
-loader("DateColumn", ["ElementModels/ColumnModel"], function(ColumnModel){
-        var DateColumn = DateColumn || function (index, text, datafield, child) {
+loader("DateColumn", ["ElementModels/ColumnModel"],
+    function (ColumnModel) {
+        var DateColumn = function (index, text, datafield, child) {
             var _self = this;
             var _index = index;
             var _text = text;

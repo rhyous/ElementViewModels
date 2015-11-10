@@ -1,4 +1,4 @@
-loader("BaseElement", ["ko"], function(ko){
+loader("BaseElement", ["ko", "EvmUtils/StringUtils"], function (ko, StringUtils) {
         var BaseElement = function(child) {
             var _self = this;
             var _child = child;
@@ -17,13 +17,13 @@ loader("BaseElement", ["ko"], function(ko){
                 child.title = ko.observable();
                 child.translate = ko.observable();
                 child.isString = function (val) {
-                    return typeof val === "string" || val instanceof String;
+                    return StringUtils.isString(val);
                 };
-                child.isNullOrWhitespace = function (str) {
-                    return !str || String(str).replace(/\s/g, '').length < 1;
+                child.isNullOrWhitespace = function (val) {
+                    return StringUtils.isNullOrWhitespace(val);
                 };
                 child.isNullOrUndefined = function (val) {
-                    return val === undefined || val === null || (child.isString(val) && isNullOrWhitespace(val));
+                    return StringUtils.isNullOrUndefined(val);
                 };
             };
             if (_child) { _self.init(_child); }

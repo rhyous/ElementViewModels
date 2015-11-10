@@ -1,10 +1,10 @@
 loader("TextBoxViewModel",
-    ["ko", "ElementModels/TextBoxModel", "ElementViewModels/TextElement"],
-    function(ko, TextBoxModel, TextElement){
+    ["ko", "ElementViewModels/TextElement", "ElementModels/TextBoxModel"],
+    function (ko, TextElement, TextBoxModel) {
         var TextBoxViewModel = function (textBoxModel, child) {
             // Private
             var _self = this;
-            var _textBoxModel = (textBoxModel) ? textBoxModel : new TextBoxModel();
+            var _textBoxModel = (textBoxModel && textBoxModel instanceof TextBoxModel) ? textBoxModel : new TextBoxModel(textBoxModel);
             var _onEnterKeyPressed = (_textBoxModel.onEnterKeyPressed) ? _textBoxModel.onEnterKeyPressed : function () {
                 return true;
             };

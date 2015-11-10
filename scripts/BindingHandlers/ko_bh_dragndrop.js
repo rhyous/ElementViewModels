@@ -1,4 +1,4 @@
-loader("ko_bh_dragndrop", ["ko"], function(ko){
+loader("ko_bh_dragndrop", ["jquery","ko"], function($, ko){
         ko.bindingHandlers.drag = {
             init: function (element, valueAccessor) {
                 var dragElement = $(element);

@@ -1,5 +1,6 @@
-loader("StringColumn", ["ElementModels/ColumnModel"], function(ColumnModel){
-        var StringColumn = StringColumn || function (index, text, datafield, child) {
+loader("StringColumn", ["ElementModels/ColumnModel"],
+    function (ColumnModel) {
+        var StringColumn = function (index, text, datafield, child) {
             var _self = this;
             var _index = index;
             var _text = text;

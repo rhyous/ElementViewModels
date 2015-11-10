@@ -3,7 +3,7 @@ loader("ButtonViewModel", ["ko", "ElementViewModels/TextElement", "ElementModels
         var ButtonViewModel = function (buttonModel, child) {
             // Private
             var _self = this;
-            var _buttonModel = buttonModel || new ButtonModel();
+            var _buttonModel = buttonModel instanceof ButtonModel ? buttonModel : new ButtonModel(buttonModel);
 
             _self.init = function (obj) {
                 new TextElement(_buttonModel.text.get(), null, obj);

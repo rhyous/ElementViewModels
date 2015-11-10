@@ -1,11 +1,13 @@
- loader("TextAreaViewModel",
-    ["ko", "ElementModels/TextAreaModel", "ElementViewModels/TextBoxViewModel"],
-    function(ko, TextAreaModel, TextBoxViewModel){
+loader("TextAreaViewModel",
+    ["ko", "ElementModels/StringProperty", "ElementModels/TextAreaModel", "ElementViewModels/TextBoxViewModel"],
+function(ko, StringProperty, TextAreaModel, TextBoxViewModel){
       var TextAreaViewModel = function (textAreaModel, child) {
             var _self = this;
-            var _textAreaModel = textAreaModel || new TextAreaModel();
+            var _textAreaModel = (textAreaModel && textAreaModel.text instanceof StringProperty) 
+                ? textAreaModel
+                : new TextAreaModel(textAreaModel);
             _self.init = function(obj) {
-                obj.base = new TextBoxViewModel(textAreaModel, obj);
+                obj.base = new TextBoxViewModel(_textAreaModel.base, obj);
                 obj.rows = ko.observable(_textAreaModel.rows.get());
                 obj.columns = ko.observable(_textAreaModel.columns.get());
             };

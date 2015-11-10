@@ -5,7 +5,7 @@ var deps = ["ko",
             "ElementModels/TextBoxModel",
             "ElementViewModels/TextBoxViewModel",
             "BindingHandlers/ko_bh_enterkey",
-            "BindingHandlers/ko_bh_placeholder",
+            "BindingHandlers/ko_bh_placeholder"
            ];             
 loader("AuthenticationViewModel", deps,
     function(ko, ButtonModel, ButtonViewModel, TextBoxModel, TextBoxViewModel){
