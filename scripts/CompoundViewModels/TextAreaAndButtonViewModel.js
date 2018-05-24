@@ -8,7 +8,7 @@ var deps = ["ko",
             "BindingHandlers/ko_bh_rows",
             "BindingHandlers/ko_bh_placeholder"];
 loader("TextAreaAndButtonViewModel", 
-    ["ko","ElementViewModels/ButtonViewModel","ElementViewModels/TextAreaViewModel"],
+    deps,
     function (ko, ButtonModel, ButtonViewModel, TextAreaModel, TextAreaViewModel) {
         var TextAreaAndButtonViewModel = function (textAreaModel, buttonModel, child) {
             var _self = this;
